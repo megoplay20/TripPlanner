@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/nav_graph"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.esv.tripplanner.fragments.StartFragment"
+        android:label="StartFragment" >
+        <action
+            android:id="@+id/startNewRouteAction"
+            app:destination="@id/newRouteFragment" />
+        <action
+            android:id="@+id/loadRouteAction"
+            app:destination="@id/loadRouteFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newRouteFragment"
+        android:name="com.esv.tripplanner.fragments.NewRouteFragment"
+        android:label="NewRouteFragment" >
+        <action
+            android:id="@+id/addVisitPlanAction"
+            app:destination="@id/addVisitPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loadRouteFragment"
+        android:name="com.esv.tripplanner.fragments.LoadRouteFragment"
+        android:label="LoadRouteFragment" />
+    <fragment
+        android:id="@+id/addVisitPlanFragment"
+        android:name="com.esv.tripplanner.fragments.AddVisitPlanFragment"
+        android:label="AddVisitPlanFragment" >
+        <action
+            android:id="@+id/addPoiActionFromVisitPlan"
+            app:destination="@id/pointOfInterestFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pointOfInterestFragment"
+        android:name="com.esv.tripplanner.fragments.PointOfInterestFragment"
+        android:label="PointOfInterestFragment" />
+</navigation>
