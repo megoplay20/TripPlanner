@@ -7,6 +7,10 @@
 <variable
     name="viewModel"
     type="com.esv.tripplanner.viewModels.PointOfInterestVisitPlansViewModel" />
+
+
+        <import type="com.esv.tripplanner.binding_converters.BindingConverters"/>
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -24,8 +28,7 @@
             android:ems="10"
             android:hint="@string/timeSpent"
             android:inputType="numberDecimal"
-            app:setDoubleValue="@={viewModel.poiVisitPlan.visitTimeHrs}"
-            app:expectedType = "@{`double`}"
+            android:text="@={ BindingConverters.doubleToString(viewModel.poiVisitPlan.visitTimeHrs)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"

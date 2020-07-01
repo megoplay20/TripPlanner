@@ -26,6 +26,14 @@ class PointOfInterestVisitPlansViewModel(): PointOfInterestViewModel(){
 
     }
 
+    fun editVisitPlan(){
+        //TODO()
+    }
+
+    fun deleteVisitPlanPoi(){
+        //TODO()
+    }
+
     fun cancel(){
 
     }

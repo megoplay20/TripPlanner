@@ -9,21 +9,27 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.esv.tripplanner.R
+import com.esv.tripplanner.adapters.PoiVisitPlaceAdapter
 import com.esv.tripplanner.databinding.NewRouteFragmentBinding
 import com.esv.tripplanner.databinding.StartFragmentBinding
+import com.esv.tripplanner.repositories.MockTripRepository
+import com.esv.tripplanner.utils.TypeCasterImpl
 import com.esv.tripplanner.viewModels.NewRouteViewModel
 import com.esv.tripplanner.viewModels.StartFragmentViewModel
 
 class NewRouteFragment : Fragment() {
 
     private val viewModel: NewRouteViewModel by activityViewModels()
+    private lateinit var binding:NewRouteFragmentBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<NewRouteFragmentBinding>(
+        binding = DataBindingUtil.inflate<NewRouteFragmentBinding>(
             inflater,
             R.layout.new_route_fragment,
             container,
@@ -39,6 +45,13 @@ class NewRouteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.placesList.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false )
+
+        val adapter = PoiVisitPlaceAdapter(arrayListOf(),TypeCasterImpl(),MockTripRepository())
+        binding.placesList.adapter = adapter
+            viewModel.allVisitPlaces.observe(viewLifecycleOwner, Observer {
+            adapter.setPlaces(it)
+        })
 
         viewModel.navigateAction.observe(this.viewLifecycleOwner, Observer { event ->
             event.getContentIfNotHandled()?.let { navDirection ->
