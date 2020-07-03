@@ -58,7 +58,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Trip planner"
+                        android:text="@string/AppTitle"
                         android:textAppearance="?attr/textAppearanceHeadline6" />
 
                     <TextView
@@ -95,7 +95,7 @@
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
+                        android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:onClick="@{()-> viewModel.navigateToLoadExistingRoute()}"
                         android:text="@string/load_exisiting_route"

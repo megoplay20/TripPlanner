@@ -19,19 +19,28 @@ import com.esv.tripplanner.utils.DateProcessor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.properties.Delegates
 
-class NewRouteViewModel(app:Application, val tripId: Int):AndroidObservableViewModel(app) {
+class NewRouteViewModel(app:Application):AndroidObservableViewModel(app) {
 
     private var repository: ITripRepository
 
-    var tripVisitPlacesRelations: LiveData<List<TripVisitPlansRelation>>
+    lateinit var tripVisitPlacesRelations: LiveData<List<TripVisitPlansRelation>>
+    var tripId by Delegates.notNull<Int>()
+
     @get:Bindable
     var tripName: String="";
     var date: Date = Date()
 
+
     init {
         val database = TripDatabase.getDatabase(app.applicationContext)
         repository = TripRepositoryFactory.getDatabaseRepositoryInstance(database)
+    }
+
+
+    fun provideTripId(tripId: Int){
+        this.tripId= tripId
         tripVisitPlacesRelations = repository.getVisitPlansForTrip(tripId);
         viewModelScope.launch {
             tripName = repository.getTripById(tripId).name

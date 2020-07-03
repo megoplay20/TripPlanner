@@ -16,7 +16,6 @@ import com.esv.tripplanner.adapters.PoiVisitPlaceAdapter
 import com.esv.tripplanner.databinding.NewRouteFragmentBinding
 import com.esv.tripplanner.utils.TypeCasterImpl
 import com.esv.tripplanner.viewModels.NewRouteViewModel
-import com.esv.tripplanner.viewModels.viewModelFactories.NewRouteViewModelFactory
 
 class NewRouteFragment : Fragment() {
 
@@ -36,12 +35,10 @@ class NewRouteFragment : Fragment() {
         }
 
         viewModel = ViewModelProvider(
-            requireActivity(),
-            NewRouteViewModelFactory(
-                this.requireActivity().application, tripId
-            )
+            requireActivity()
         ).get(NewRouteViewModel::class.java)
 
+        viewModel.provideTripId(tripId)
 
         binding = DataBindingUtil.inflate<NewRouteFragmentBinding>(
             inflater,

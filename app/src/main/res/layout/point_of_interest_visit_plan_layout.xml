@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_weight="1"
-                    android:text="Изменить"
+                    android:text="@string/Change"
                     android:onClick="@{()->viewModel.editVisitPlan()}"
                     android:textAllCaps="false"
                     app:icon="@drawable/ic_edit_black_24dp" />
@@ -113,7 +113,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"
-                    android:text="Удалить"
+                    android:text="@string/Delete"
                     android:onClick="@{()->viewModel.deleteVisitPlanPoi()}"
                     android:textColor="?attr/removeItem"
                     app:iconTint="?attr/removeItem"
