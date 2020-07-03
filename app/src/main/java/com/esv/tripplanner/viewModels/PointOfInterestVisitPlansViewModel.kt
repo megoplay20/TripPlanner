@@ -1,29 +1,65 @@
 package com.esv.tripplanner.viewModels
 
+import android.app.Application
 import androidx.databinding.Bindable
-import com.esv.tripplanner.BR
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
+import androidx.navigation.NavDirections
+import com.esv.tripplanner.entities.PointOfInterest
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.helpers.ObservableViewModel
-import com.esv.tripplanner.repositories.ITripRepository
+import com.esv.tripplanner.fragments.AddVisitPlanFragmentDirections
+import com.esv.tripplanner.helpers.Event
 import com.esv.tripplanner.utils.ITypeCaster
+import kotlinx.coroutines.launch
 
-class PointOfInterestVisitPlansViewModel(): PointOfInterestViewModel(){
+class PointOfInterestVisitPlansViewModel(app: Application): PointOfInterestViewModel(app){
 
     @get:Bindable
     lateinit var poiVisitPlan: PointOfInterestVisitPlan;
 
-    fun initVisitPlansViewModel(poiVisitPlan: PointOfInterestVisitPlan, typeCaster: ITypeCaster, repository: ITripRepository)  {
+    lateinit var pointOfInterestList: LiveData<List<PointOfInterest>>
+
+    var tripId: Int = -1
+
+    fun initVisitPlansViewModel(
+        tripId: Int,
+        poiVisitPlan: PointOfInterestVisitPlan,
+        typeCaster: ITypeCaster
+    )  {
+        this.tripId = tripId
         this.poiVisitPlan = poiVisitPlan
-        super.initPointOfInterestViewModel(repository.getPointOfInterestById(poiVisitPlan.pointOfInterestId), typeCaster)
+        viewModelScope.launch {
+            repository.getPointOfInterestById(poiVisitPlan.pointOfInterestId)?.let {
+                super.initPointOfInterestViewModel(it, typeCaster)
+            }
+        }
+        pointOfInterestList = repository.getPointOfInterest()
     }
 
 
-    fun addNewPoi(){
 
+    private val _navigateAction: MutableLiveData<Event<NavDirections>> = MutableLiveData();
+    val navigateAction: LiveData<Event<NavDirections>> get() = _navigateAction
+
+    private val _backAction: MutableLiveData<Event<Boolean>> = MutableLiveData();
+    val backAction: LiveData<Event<Boolean>> get() = _backAction
+
+    fun addNewPoi(){
+        this._navigateAction.value = Event(AddVisitPlanFragmentDirections.addPoiActionFromVisitPlan())
     }
 
     fun saveVisitPlan(){
 
+        selectedPoi?.let {
+            if (it.id >= 0) {
+                poiVisitPlan.pointOfInterestId = it.id
+                viewModelScope.launch {
+                    val newVisitPlacesId = repository.addVisitPlanToTrip(tripId, poiVisitPlan)
+                    _backAction.value = Event(true)
+                }
+            }
+        }
     }
 
     fun editVisitPlan(){
@@ -35,7 +71,7 @@ class PointOfInterestVisitPlansViewModel(): PointOfInterestViewModel(){
     }
 
     fun cancel(){
-
+        _backAction.value = Event(true)
     }
 
 }

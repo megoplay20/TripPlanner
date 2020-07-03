@@ -1,7 +1,7 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
+    "version": 4,
     "identityHash": "5569ed6964b38281f020ef5d410e4613",
     "entities": [
       {
@@ -121,14 +121,8 @@
       },
       {
         "tableName": "trip",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT)",
         "fields": [
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
           {
             "fieldPath": "dateSaved",
             "columnName": "dateSaved",
@@ -152,6 +146,12 @@
             "columnName": "isRouteGenerated",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {

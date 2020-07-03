@@ -1,5 +1,6 @@
 package com.esv.tripplanner.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.esv.tripplanner.entities.PointOfInterest
 
@@ -7,7 +8,7 @@ import com.esv.tripplanner.entities.PointOfInterest
 interface PointOfInterestDao{
 
     @Query("SELECT * FROM point_of_interest")
-    suspend fun loadPointOfInterest():List<PointOfInterest>;
+    fun loadPointOfInterest(): LiveData<List<PointOfInterest>>;
 
     @Query("SELECT * FROM point_of_interest WHERE id = :id")
     suspend fun loadPointOfInterest(id: Int):List<PointOfInterest>;

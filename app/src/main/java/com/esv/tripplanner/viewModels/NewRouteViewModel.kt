@@ -4,34 +4,40 @@ import android.app.Application
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.esv.tripplanner.BR
 import com.esv.tripplanner.database.TripDatabase
-import com.esv.tripplanner.entities.PointOfInterestVisitPlan
+import com.esv.tripplanner.entities.relation_classes.TripPoiVisitPlanJoinRelation
+import com.esv.tripplanner.entities.relation_classes.TripVisitPlansRelation
 import com.esv.tripplanner.fragments.NewRouteFragmentDirections
 import com.esv.tripplanner.helpers.AndroidObservableViewModel
 import com.esv.tripplanner.helpers.Event
-import com.esv.tripplanner.helpers.ObservableViewModel
 import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.repositories.TripDatabaseRepository
+import com.esv.tripplanner.repositories.TripRepositoryFactory
 import com.esv.tripplanner.utils.DateProcessor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.*
 
-class NewRouteViewModel(app:Application):AndroidObservableViewModel(app) {
+class NewRouteViewModel(app:Application, val tripId: Int):AndroidObservableViewModel(app) {
 
     private var repository: ITripRepository
 
-    var allVisitPlaces: LiveData<List<PointOfInterestVisitPlan>>
-
-    init {
-        val database = TripDatabase.getDatabase(app.applicationContext)
-        repository = TripDatabaseRepository(database.pointOfInterestVisitPlans())
-        allVisitPlaces = repository.getVisitPlacesData()
-    }
-
+    var tripVisitPlacesRelations: LiveData<List<TripVisitPlansRelation>>
     @get:Bindable
     var tripName: String="";
     var date: Date = Date()
+
+    init {
+        val database = TripDatabase.getDatabase(app.applicationContext)
+        repository = TripRepositoryFactory.getDatabaseRepositoryInstance(database)
+        tripVisitPlacesRelations = repository.getVisitPlansForTrip(tripId);
+        viewModelScope.launch {
+            tripName = repository.getTripById(tripId).name
+            notifyPropertyChanged(BR.tripName)
+        }
+    }
 
     @Bindable
     fun getDateAsText(): String{
@@ -50,7 +56,8 @@ class NewRouteViewModel(app:Application):AndroidObservableViewModel(app) {
     val navigateAction: LiveData<Event<NavDirections>> get() = _navigateAction
 
     fun addVisitPlace(){
-        this._navigateAction.value = Event(NewRouteFragmentDirections.addVisitPlanAction())
+            _navigateAction.postValue(Event(NewRouteFragmentDirections.addVisitPlanAction(tripId)))
+
     }
 
 

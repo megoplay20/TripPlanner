@@ -14,7 +14,7 @@ interface VisitPlansDao{
     suspend fun loadPointOfInterestVisitPlan(id: Int):List<PointOfInterestVisitPlan>;
 
     @Insert
-    suspend fun save(poiVisitPlan: PointOfInterestVisitPlan);
+    suspend fun save(poiVisitPlan: PointOfInterestVisitPlan): Long
 
     @Update
     suspend fun update(poiVisitPlan: PointOfInterestVisitPlan);

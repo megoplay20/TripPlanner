@@ -16,7 +16,7 @@ import com.esv.tripplanner.entities.*
     PointOfInterestVisitPlan::class,
     Trip::class,
     TripRouteJoin::class,
-    TripPointOfInterestVisitPlanJoin::class], version = 1)
+    TripPointOfInterestVisitPlanJoin::class], version = 8)
 @TypeConverters(DbDateConverter::class, DbLocalTimeConverter::class)
 
 abstract class TripDatabase: RoomDatabase(){
@@ -25,17 +25,25 @@ abstract class TripDatabase: RoomDatabase(){
     abstract fun trips(): TripDao;
 
     companion object{
-        private var databaseInstance: TripDatabase? = null;
+
+        @Volatile
+        private var databaseInstance: TripDatabase? = null
+
         fun getDatabase(applicationContext: Context): TripDatabase {
-            if(databaseInstance == null) {
-                return Room.databaseBuilder(
+            val tempInstance = databaseInstance
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = Room.databaseBuilder(
                     applicationContext,
                     TripDatabase::class.java, "trip_db"
                 ).build()
-            }else{
-                return databaseInstance!!;
+                databaseInstance = instance
+                return instance
             }
-
         }
+
+
     }
 }

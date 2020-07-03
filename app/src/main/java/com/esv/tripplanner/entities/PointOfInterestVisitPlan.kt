@@ -14,12 +14,10 @@ import androidx.room.ForeignKey.CASCADE
 )
 data class PointOfInterestVisitPlan(
     @ColumnInfo(index = true)
-    val pointOfInterestId: Int,
+    var pointOfInterestId: Int,
     var visitTimeHrs: Double?,
-    var isStartPoint: Boolean = false,
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = -1
+    var isStartPoint: Boolean = false
 ) {
-
-
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0
 }

@@ -1,13 +1,19 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "5569ed6964b38281f020ef5d410e4613",
+    "version": 8,
+    "identityHash": "584c6405f633904c15d755515dfb4f06",
     "entities": [
       {
         "tableName": "point_of_interest",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `description` TEXT NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `openTime` TEXT NOT NULL, `closeTime` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `latitude` REAL NOT NULL, `longitude` REAL NOT NULL, `openTime` TEXT NOT NULL, `closeTime` TEXT NOT NULL)",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "name",
             "columnName": "name",
@@ -18,12 +24,6 @@
             "fieldPath": "description",
             "columnName": "description",
             "affinity": "TEXT",
-            "notNull": true
-          },
-          {
-            "fieldPath": "id",
-            "columnName": "id",
-            "affinity": "INTEGER",
             "notNull": true
           },
           {
@@ -62,8 +62,14 @@
       },
       {
         "tableName": "point_of_interest_visit_plan",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`pointOfInterestId` INTEGER NOT NULL, `visitTimeHrs` REAL, `isStartPoint` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, FOREIGN KEY(`pointOfInterestId`) REFERENCES `point_of_interest`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pointOfInterestId` INTEGER NOT NULL, `visitTimeHrs` REAL, `isStartPoint` INTEGER NOT NULL, FOREIGN KEY(`pointOfInterestId`) REFERENCES `point_of_interest`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )",
         "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
           {
             "fieldPath": "pointOfInterestId",
             "columnName": "pointOfInterestId",
@@ -79,12 +85,6 @@
           {
             "fieldPath": "isStartPoint",
             "columnName": "isStartPoint",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "id",
-            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           }
@@ -121,13 +121,13 @@
       },
       {
         "tableName": "trip",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "dateSaved",
@@ -307,7 +307,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5569ed6964b38281f020ef5d410e4613')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '584c6405f633904c15d755515dfb4f06')"
     ]
   }
 }

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/addVisitPlanAction"
             app:destination="@id/addVisitPlanFragment" />
+        <argument
+            android:name="tripId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/loadRouteFragment"
@@ -33,6 +36,9 @@
         <action
             android:id="@+id/addPoiActionFromVisitPlan"
             app:destination="@id/pointOfInterestFragment" />
+        <argument
+            android:name="tripId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/pointOfInterestFragment"

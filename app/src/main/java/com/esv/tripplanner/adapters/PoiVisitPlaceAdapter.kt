@@ -1,41 +1,36 @@
 package com.esv.tripplanner.adapters
 
+import android.app.Application
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.esv.tripplanner.R
+import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.databinding.PointOfInterestVisitPlanLayoutBinding
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
 import com.esv.tripplanner.repositories.ITripRepository
+import com.esv.tripplanner.repositories.TripRepositoryFactory
 import com.esv.tripplanner.utils.ITypeCaster
-import com.esv.tripplanner.viewModels.PointOfInterestVisitPlansViewModel
 
-class PoiVisitPlaceAdapter (private var poiVisitPlaces:List<PointOfInterestVisitPlan>, val typeCaster: ITypeCaster, val repo: ITripRepository) :
-    RecyclerView.Adapter<PoiVisitPlaceAdapter.PoiVisitPlacesViewHolder>() {
+class PoiVisitPlaceAdapter(
+    val tripId: Int,
+    private val app: Application,
+    private var poiVisitPlaces: MutableList<PointOfInterestVisitPlan>,
+    val typeCaster: ITypeCaster
+) :
+    RecyclerView.Adapter<PoiVisitPlacesViewHolder>() {
 
-    fun setPlaces(poiVisitPlaces:List<PointOfInterestVisitPlan>){
-        this.poiVisitPlaces = poiVisitPlaces;
-        this.notifyDataSetChanged();
+    val repository: ITripRepository;
+    init {
+        val database = TripDatabase.getDatabase(app.applicationContext)
+        repository = TripRepositoryFactory.getDatabaseRepositoryInstance(database)
     }
 
-    class PoiVisitPlacesViewHolder(
-        itemView: View,
-        val binding: PointOfInterestVisitPlanLayoutBinding,
-        val typeCaster: ITypeCaster,
-        val repo: ITripRepository
-    ) : RecyclerView.ViewHolder(itemView) {
-
-        fun bindItem(
-            poiVisitPlan: PointOfInterestVisitPlan
-        ) {
-            val viewModel = PointOfInterestVisitPlansViewModel()
-            viewModel.initVisitPlansViewModel(poiVisitPlan, typeCaster,repo)
-            this.binding.viewModel = viewModel
-            this.binding.executePendingBindings()
-        }
-
+    fun setPlaces(poiVisitPlaces:List<PointOfInterestVisitPlan>){
+        this.poiVisitPlaces.clear()
+        this.poiVisitPlaces.addAll(poiVisitPlaces);
+        this.notifyDataSetChanged();
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PoiVisitPlacesViewHolder {
@@ -46,7 +41,13 @@ class PoiVisitPlaceAdapter (private var poiVisitPlaces:List<PointOfInterestVisit
             parent,
             false
         )
-        return PoiVisitPlacesViewHolder(binding.root, binding,typeCaster,repo)
+        return PoiVisitPlacesViewHolder(
+            binding.root,
+            binding,
+            typeCaster,
+            app,
+            tripId
+        )
     }
 
     override fun getItemCount(): Int {

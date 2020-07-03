@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 1,
-    "identityHash": "5569ed6964b38281f020ef5d410e4613",
+    "version": 2,
+    "identityHash": "584c6405f633904c15d755515dfb4f06",
     "entities": [
       {
         "tableName": "point_of_interest",
@@ -121,13 +121,13 @@
       },
       {
         "tableName": "trip",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `dateSaved` INTEGER NOT NULL, `name` TEXT NOT NULL, `description` TEXT NOT NULL, `isRouteGenerated` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
-            "notNull": false
+            "notNull": true
           },
           {
             "fieldPath": "dateSaved",
@@ -307,7 +307,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '5569ed6964b38281f020ef5d410e4613')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '584c6405f633904c15d755515dfb4f06')"
     ]
   }
 }

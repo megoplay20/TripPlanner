@@ -83,7 +83,7 @@
 
             <!-- Buttons -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
                 android:orientation="horizontal">
@@ -91,7 +91,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
                     android:layout_weight="1"
@@ -101,14 +101,15 @@
                     app:icon="@drawable/ic_edit_black_24dp" />
 
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+
+                     />
 
 
                 <com.google.android.material.button.MaterialButton
                     style="?attr/borderlessButtonStyle"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_weight="1"

@@ -21,6 +21,9 @@
     <string name="PlaceList">Список мест</string>
     <string name="Cancel">Отмена</string>
     <string name="Save">Сохранить</string>
+    <string name="emptyRouteTitleText">Новый маршрут</string>
+    <string name="newEmptyTripTitile">Новый маршрут</string>
+    <string name="ChoosePlace">Выберите место ...</string>
 
     <item type="id" name="editTextChangeListenerId"/>
     <item type="id" name="dataTypeId"/>
