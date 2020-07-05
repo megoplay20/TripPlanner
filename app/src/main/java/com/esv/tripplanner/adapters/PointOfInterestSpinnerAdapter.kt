@@ -5,28 +5,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import com.esv.tripplanner.R
 import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.databinding.PointOfInterestLayoutBinding
-import com.esv.tripplanner.databinding.PointOfInterestVisitPlanLayoutBinding
 import com.esv.tripplanner.entities.PointOfInterest
 import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.repositories.TripRepositoryFactory
 import com.esv.tripplanner.utils.ITypeCaster
 import com.esv.tripplanner.viewModels.PointOfInterestViewModel
 
 
-class PointOfInterestSpinnerAdapter (val app: Application, layoutId:Int, private var pointOfInterestList:MutableList<PointOfInterest>, private var typeCaster: ITypeCaster) :
+class PointOfInterestSpinnerAdapter (val app: Application, layoutId:Int,
+                                     private var pointOfInterestList:MutableList<PointOfInterest>,
+                                     private var typeCaster: ITypeCaster,
+                                     val repository: ITripRepository) :
+
     ArrayAdapter<PointOfInterest>(app.applicationContext, layoutId, pointOfInterestList) {
-
-    private val repository: ITripRepository;
-    init {
-        val database = TripDatabase.getDatabase(app.applicationContext)
-        repository = TripRepositoryFactory.getDatabaseRepositoryInstance(database)
-    }
-
     fun setPoints(pointOfInterestList:MutableList<PointOfInterest>){
         this.pointOfInterestList.clear();
         this.pointOfInterestList.addAll(pointOfInterestList)
@@ -48,7 +42,7 @@ class PointOfInterestSpinnerAdapter (val app: Application, layoutId:Int, private
             parent,
             false
         )
-        binding.viewModel = PointOfInterestViewModel(app).apply { initPointOfInterestViewModel(pointOfInterestList[position], typeCaster) }
+        binding.viewModel = PointOfInterestViewModel(app,repository).apply { initPointOfInterestViewModel(pointOfInterestList[position], typeCaster) }
         return binding.root
     }
 

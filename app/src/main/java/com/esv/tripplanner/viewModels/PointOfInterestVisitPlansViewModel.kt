@@ -10,10 +10,11 @@ import com.esv.tripplanner.entities.PointOfInterest
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
 import com.esv.tripplanner.fragments.AddVisitPlanFragmentDirections
 import com.esv.tripplanner.helpers.Event
+import com.esv.tripplanner.repositories.ITripRepository
 import com.esv.tripplanner.utils.ITypeCaster
 import kotlinx.coroutines.launch
 
-class PointOfInterestVisitPlansViewModel(app: Application): PointOfInterestViewModel(app){
+class PointOfInterestVisitPlansViewModel(app: Application, repository: ITripRepository): PointOfInterestViewModel(app,repository){
 
     @get:Bindable
     lateinit var poiVisitPlan: PointOfInterestVisitPlan;

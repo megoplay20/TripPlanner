@@ -47,8 +47,9 @@ class BindingAdapters {
             }
 
 
-            val oldValue = ListenerUtil.trackListener(spinner, listener, R.id.editTextChangeListenerId)
-            if(oldValue!=null)
+            val oldValue =
+                ListenerUtil.trackListener(spinner, listener, R.id.editTextChangeListenerId)
+            if (oldValue != null)
                 spinner.onItemSelectedListener = null
             spinner.onItemSelectedListener = listener
 
@@ -57,9 +58,9 @@ class BindingAdapters {
                 selectedSpinnerItem
             )
 
-            if(spinner.selectedItemPosition != spinnerItemIndex) {
+            if (spinner.selectedItemPosition != spinnerItemIndex) {
                 spinner.setSelection(
-                        spinnerItemIndex
+                    spinnerItemIndex
                 )
             }
 
@@ -68,7 +69,7 @@ class BindingAdapters {
 
         private fun getSpinnerItemIndex(spinner: Spinner, spinnerItem: Any?): Int {
             for (i in 0 until spinner.count) {
-                val item:Any? = spinner.getItemAtPosition(i)
+                val item: Any? = spinner.getItemAtPosition(i)
                 if (item == spinnerItem) {
                     return i
                 }
@@ -85,50 +86,7 @@ class BindingAdapters {
             return spinner.selectedItem
         }
 
-
-        @BindingAdapter(value = ["setDoubleValue", "expectedType", "setDoubleValueAttrChanged"], requireAll = false )
-        @JvmStatic fun setEditTextTypedValue(
-            editText: EditText,
-            value: Double?,
-            expectedType: String,
-            changeListener: InverseBindingListener
-        ) {
-            val listener =  object : TextWatcher{
-                override fun afterTextChanged(s: Editable?) { }
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-
-                }
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    changeListener.onChange()
-                }
-            }
-
-            val oldValue: TextWatcher? = ListenerUtil.trackListener(editText, listener, R.id.editTextChangeListenerId)
-            if(oldValue!=null)
-                editText.removeTextChangedListener(oldValue)
-            editText.addTextChangedListener(listener)
-
-            editText.setTag(R.id.dataTypeId, expectedType);
-            val newValue = value?.toString() ?: ""
-            if(editText.text?.toString() ?: "" != newValue) {
-                editText.setText(newValue);
-            }
-        }
-
-        @InverseBindingAdapter(
-            attribute = "setDoubleValue",
-            event = "setDoubleValueAttrChanged"
-        )
-        @JvmStatic fun getEditTextTypedValue(editText: EditText): Double? {
-            val typeCaster:ITypeCaster = TypeCasterImpl()
-            val providedType = editText.getTag(R.id.dataTypeId)
-            return typeCaster.GetDouble(editText.text)
-        }
     }
+
 }
 

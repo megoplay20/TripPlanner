@@ -8,18 +8,30 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import com.esv.tripplanner.R
 import com.esv.tripplanner.adapters.NothingSelectedSpinnerAdapter
 import com.esv.tripplanner.adapters.PointOfInterestSpinnerAdapter
+import com.esv.tripplanner.application.TripPlannerApplication
 import com.esv.tripplanner.databinding.AddOrEditPointOfInterestVisitPlansBinding
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.utils.TypeCasterImpl
+import com.esv.tripplanner.repositories.ITripRepository
+import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.viewModels.PointOfInterestViewModel
 import com.esv.tripplanner.viewModels.PointOfInterestVisitPlansViewModel
+import com.esv.tripplanner.viewModels.viewModelFactories.RepositoryAwareViewModel
+import javax.inject.Inject
 
-class AddVisitPlanFragment: Fragment() {
+class AddVisitPlanFragment: InjectableFragment() {
 
-    private val viewModel: PointOfInterestVisitPlansViewModel by activityViewModels()
+    @Inject
+    lateinit var typeCaster: ITypeCaster
+
+    @Inject
+    lateinit var repository: ITripRepository
+
+    private lateinit var viewModel: PointOfInterestVisitPlansViewModel
     private var tripId = -1
 
     private lateinit var binding:AddOrEditPointOfInterestVisitPlansBinding
@@ -41,9 +53,16 @@ class AddVisitPlanFragment: Fragment() {
             tripId = args.tripId
         }
 
+        viewModel = ViewModelProvider(
+            requireActivity(),
+            RepositoryAwareViewModel(
+                this.requireActivity().application, repository
+            )
+        ).get(PointOfInterestVisitPlansViewModel::class.java)
+
         viewModel.initVisitPlansViewModel(tripId,
             PointOfInterestVisitPlan(-1, 0.5, false),
-            TypeCasterImpl())
+            typeCaster)
 
         binding.viewModel = viewModel
         // Inflate the layout for this fragment
@@ -52,7 +71,7 @@ class AddVisitPlanFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = PointOfInterestSpinnerAdapter(requireActivity().application,  R.layout.point_of_interest_layout, arrayListOf(),TypeCasterImpl())
+        val adapter = PointOfInterestSpinnerAdapter(requireActivity().application,  R.layout.point_of_interest_layout, arrayListOf(),typeCaster,repository)
 
         val nothingAdapter = NothingSelectedSpinnerAdapter(adapter, R.layout.nothing_selected_spinner_layout, requireContext())
 
@@ -82,5 +101,9 @@ class AddVisitPlanFragment: Fragment() {
         })
 
 
+    }
+
+    override fun performInjection() {
+        TripPlannerApplication.tripPlannerAppInstance.appComponent.inject(this)
     }
 }

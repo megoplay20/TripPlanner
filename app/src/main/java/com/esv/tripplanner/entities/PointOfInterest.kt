@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.esv.tripplanner.helpers.TimeSpan
+import javax.inject.Inject
 
 @Entity(tableName = "point_of_interest")
 data class PointOfInterest(

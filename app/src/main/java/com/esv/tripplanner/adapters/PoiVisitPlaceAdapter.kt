@@ -6,26 +6,20 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.esv.tripplanner.R
-import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.databinding.PointOfInterestVisitPlanLayoutBinding
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
 import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.repositories.TripRepositoryFactory
 import com.esv.tripplanner.utils.ITypeCaster
 
 class PoiVisitPlaceAdapter(
     val tripId: Int,
     private val app: Application,
     private var poiVisitPlaces: MutableList<PointOfInterestVisitPlan>,
-    val typeCaster: ITypeCaster
+    val typeCaster: ITypeCaster,
+    val repository: ITripRepository
 ) :
     RecyclerView.Adapter<PoiVisitPlacesViewHolder>() {
 
-    val repository: ITripRepository;
-    init {
-        val database = TripDatabase.getDatabase(app.applicationContext)
-        repository = TripRepositoryFactory.getDatabaseRepositoryInstance(database)
-    }
 
     fun setPlaces(poiVisitPlaces:List<PointOfInterestVisitPlan>){
         this.poiVisitPlaces.clear()
@@ -46,7 +40,8 @@ class PoiVisitPlaceAdapter(
             binding,
             typeCaster,
             app,
-            tripId
+            tripId,
+            repository
         )
     }
 
