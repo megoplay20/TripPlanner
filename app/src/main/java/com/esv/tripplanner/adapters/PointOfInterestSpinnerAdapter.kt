@@ -7,18 +7,18 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import com.esv.tripplanner.R
-import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.databinding.PointOfInterestLayoutBinding
 import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.helpers.ITypeCaster
 import com.esv.tripplanner.viewModels.PointOfInterestViewModel
 
 
 class PointOfInterestSpinnerAdapter (val app: Application, layoutId:Int,
                                      private var pointOfInterestList:MutableList<PointOfInterest>,
                                      private var typeCaster: ITypeCaster,
-                                     val repository: ITripRepository) :
+                                     val repository: ITripRepository
+) :
 
     ArrayAdapter<PointOfInterest>(app.applicationContext, layoutId, pointOfInterestList) {
     fun setPoints(pointOfInterestList:MutableList<PointOfInterest>){

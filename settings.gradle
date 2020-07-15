@@ -1,2 +1,7 @@
+include ':modules:pointofinterest'
+include ':modules:visitplan'
+include ':modules:newroute'
+include ':modules:startscreen'
+include ':modules:core'
 rootProject.name='TripPlanner'
 include ':app'

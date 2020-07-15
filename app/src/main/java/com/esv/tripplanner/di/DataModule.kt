@@ -1,9 +1,9 @@
 package com.esv.tripplanner.di
 
-import android.content.Context
-import com.esv.tripplanner.database.TripDatabase
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.repositories.TripDatabaseRepository
+import android.app.Application
+import com.esv.tripplanner.core.data.database.TripDatabase
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.data.repositories.TripDatabaseRepository
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -13,14 +13,19 @@ class DataModule {
 
     @Singleton
     @Provides
-    fun getTripDatabase(context: Context): TripDatabase{
-        return TripDatabase.getDatabase(context)
+    fun getTripDatabase(app: Application): TripDatabase {
+        return TripDatabase.getDatabase(app.applicationContext)
     }
 
     @Singleton
     @Provides
     fun getTripRepository(database: TripDatabase): ITripRepository {
-            return TripDatabaseRepository(database, database.trips(), database.pointOfInterest(), database.pointOfInterestVisitPlans())
+            return TripDatabaseRepository(
+                database,
+                database.trips(),
+                database.pointOfInterest(),
+                database.pointOfInterestVisitPlans()
+            )
     }
 
 

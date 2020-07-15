@@ -5,21 +5,22 @@ import android.view.View
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import com.esv.tripplanner.BR
-import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.entities.Location
 import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.helpers.AndroidObservableViewModel
-import com.esv.tripplanner.helpers.TimeHolder
-import com.esv.tripplanner.helpers.TimeSpan
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.helpers.AndroidObservableViewModel
+import com.esv.tripplanner.core.helpers.TimeHolder
+import com.esv.tripplanner.core.helpers.TimeSpan
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.helpers.ITypeCaster
 import kotlinx.coroutines.launch
 
 open class PointOfInterestViewModel(app: Application,protected var repository: ITripRepository) : AndroidObservableViewModel(app) {
     private lateinit var typeCaster: ITypeCaster
 
     @get:Bindable
-    var poi: PointOfInterest = PointOfInterest("","", Location(0.0,0.0), TimeSpan())
+    var poi: PointOfInterest = PointOfInterest("","", Location(0.0,0.0),
+        TimeSpan()
+    )
 
     @get:Bindable
     var selectedPoi: PointOfInterest? = null

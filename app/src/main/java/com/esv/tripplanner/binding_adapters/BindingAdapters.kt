@@ -1,19 +1,14 @@
 package com.esv.tripplanner.binding_adapters
 
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
-import android.widget.EditText
 import android.widget.Spinner
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
 import androidx.databinding.adapters.ListenerUtil
 import com.esv.tripplanner.R
-import com.esv.tripplanner.utils.ITypeCaster
-import com.esv.tripplanner.utils.TypeCasterImpl
 
 
 class BindingAdapters {

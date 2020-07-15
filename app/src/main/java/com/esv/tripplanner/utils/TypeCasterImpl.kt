@@ -1,9 +1,11 @@
 package com.esv.tripplanner.utils
 
+import com.esv.tripplanner.core.helpers.ITypeCaster
 import java.util.*
 import javax.inject.Inject
 
-class TypeCasterImpl @Inject constructor(): ITypeCaster{
+class TypeCasterImpl @Inject constructor():
+    ITypeCaster {
     override fun GetString(o: Any?): String? {
         return o?.toString()
     }

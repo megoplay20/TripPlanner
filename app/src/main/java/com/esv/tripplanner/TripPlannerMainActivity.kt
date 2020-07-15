@@ -8,12 +8,22 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
+import com.esv.tripplanner.core.di.AppWithFacade
+import com.esv.tripplanner.core.navigation.INavigationProvider
 import com.esv.tripplanner.databinding.ActivityMainBinding
+import com.esv.tripplanner.di.AppComponent
+import com.esv.tripplanner.di.MainActivityComponent
+import com.esv.tripplanner.di.StartComponent
 import com.esv.tripplanner.fragments.IBackPressAwareFragment
+import com.esv.tripplanner.navigation.Navigator
 import com.esv.tripplanner.viewModels.NavigationViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class TripPlannerMainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var navigator: INavigationProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +40,7 @@ class TripPlannerMainActivity : AppCompatActivity() {
         val navController = Navigation.findNavController(this, R.id.nav_host_fragment)
         NavigationUI.setupActionBarWithNavController(this, navController)
         viewModel.setBottomNavigation(false);
+        performInjection()
     }
 
 
@@ -54,6 +65,16 @@ class TripPlannerMainActivity : AppCompatActivity() {
     }
 
 
+    override fun onPause() {
+        super.onPause()
+        navigator.unbind()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        navigator.bind(Navigation.findNavController(this, R.id.nav_host_fragment))
+    }
+
     private fun sendFragmentsUserActionEvents(callFragmentFnc: (Fragment) -> Unit) {
         supportFragmentManager.fragments.forEach { fragment ->
             if (fragment is NavHostFragment) {
@@ -62,6 +83,14 @@ class TripPlannerMainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+
+
+    private fun performInjection() {
+        MainActivityComponent.createComponent((application as AppWithFacade)
+            .getProvidersFacade())
+            .inject(this);
     }
 
 }

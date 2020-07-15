@@ -9,9 +9,9 @@ import androidx.navigation.NavDirections
 import com.esv.tripplanner.entities.PointOfInterest
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
 import com.esv.tripplanner.fragments.AddVisitPlanFragmentDirections
-import com.esv.tripplanner.helpers.Event
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.helpers.Event
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.helpers.ITypeCaster
 import kotlinx.coroutines.launch
 
 class PointOfInterestVisitPlansViewModel(app: Application, repository: ITripRepository): PointOfInterestViewModel(app,repository){
@@ -47,7 +47,8 @@ class PointOfInterestVisitPlansViewModel(app: Application, repository: ITripRepo
     val backAction: LiveData<Event<Boolean>> get() = _backAction
 
     fun addNewPoi(){
-        this._navigateAction.value = Event(AddVisitPlanFragmentDirections.addPoiActionFromVisitPlan())
+        this._navigateAction.value =
+            Event(AddVisitPlanFragmentDirections.addPoiActionFromVisitPlan())
     }
 
     fun saveVisitPlan(){
@@ -57,7 +58,8 @@ class PointOfInterestVisitPlansViewModel(app: Application, repository: ITripRepo
                 poiVisitPlan.pointOfInterestId = it.id
                 viewModelScope.launch {
                     val newVisitPlacesId = repository.addVisitPlanToTrip(tripId, poiVisitPlan)
-                    _backAction.value = Event(true)
+                    _backAction.value =
+                        Event(true)
                 }
             }
         }

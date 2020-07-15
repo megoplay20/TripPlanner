@@ -1,12 +1,14 @@
 package com.esv.tripplanner.utils
 
-import com.esv.tripplanner.di.RuDateFormat
+import com.esv.tripplanner.core.di.RuDateFormat
+import com.esv.tripplanner.core.helpers.IDateProcessor
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class DateProcessorImpl @Inject constructor(@RuDateFormat private val dateFormat: String): IDateProcessor {
+class DateProcessorImpl @Inject constructor(@RuDateFormat private val dateFormat: String):
+    IDateProcessor {
 
     private val dateProcessor: SimpleDateFormat by lazy { SimpleDateFormat(dateFormat) }
 

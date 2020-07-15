@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
@@ -16,9 +14,11 @@ import com.esv.tripplanner.adapters.PointOfInterestSpinnerAdapter
 import com.esv.tripplanner.application.TripPlannerApplication
 import com.esv.tripplanner.databinding.AddOrEditPointOfInterestVisitPlansBinding
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
-import com.esv.tripplanner.viewModels.PointOfInterestViewModel
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.di.AppWithFacade
+import com.esv.tripplanner.core.helpers.ITypeCaster
+import com.esv.tripplanner.di.AddVisitPlanComponent
+import com.esv.tripplanner.di.StartComponent
 import com.esv.tripplanner.viewModels.PointOfInterestVisitPlansViewModel
 import com.esv.tripplanner.viewModels.viewModelFactories.RepositoryAwareViewModel
 import javax.inject.Inject
@@ -104,6 +104,8 @@ class AddVisitPlanFragment: InjectableFragment() {
     }
 
     override fun performInjection() {
-        TripPlannerApplication.tripPlannerAppInstance.appComponent.inject(this)
+        AddVisitPlanComponent.createComponent((requireActivity().application as AppWithFacade)
+            .getProvidersFacade())
+            .inject(this);
     }
 }

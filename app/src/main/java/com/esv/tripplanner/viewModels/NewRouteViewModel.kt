@@ -7,20 +7,21 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.esv.tripplanner.BR
-import com.esv.tripplanner.database.TripDatabase
 import com.esv.tripplanner.entities.relation_classes.TripVisitPlansRelation
 import com.esv.tripplanner.fragments.NewRouteFragmentDirections
-import com.esv.tripplanner.helpers.AndroidObservableViewModel
-import com.esv.tripplanner.helpers.Event
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.IDateProcessor
+import com.esv.tripplanner.core.helpers.AndroidObservableViewModel
+import com.esv.tripplanner.core.helpers.Event
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.helpers.IDateProcessor
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.properties.Delegates
 
 class NewRouteViewModel(app:Application,
                         private val repository: ITripRepository,
-private val dateProcessor: IDateProcessor):AndroidObservableViewModel(app) {
+                        private val dateProcessor: IDateProcessor
+):
+    AndroidObservableViewModel(app) {
 
 
 
@@ -58,7 +59,11 @@ private val dateProcessor: IDateProcessor):AndroidObservableViewModel(app) {
     val navigateAction: LiveData<Event<NavDirections>> get() = _navigateAction
 
     fun addVisitPlace(){
-            _navigateAction.postValue(Event(NewRouteFragmentDirections.addVisitPlanAction(tripId)))
+            _navigateAction.postValue(
+                Event(
+                    NewRouteFragmentDirections.addVisitPlanAction(tripId)
+                )
+            )
 
     }
 

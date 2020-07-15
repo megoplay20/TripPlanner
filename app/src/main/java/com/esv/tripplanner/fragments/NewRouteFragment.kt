@@ -14,9 +14,12 @@ import com.esv.tripplanner.R
 import com.esv.tripplanner.adapters.PoiVisitPlaceAdapter
 import com.esv.tripplanner.application.TripPlannerApplication
 import com.esv.tripplanner.databinding.NewRouteFragmentBinding
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.IDateProcessor
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.di.AppWithFacade
+import com.esv.tripplanner.core.helpers.IDateProcessor
+import com.esv.tripplanner.core.helpers.ITypeCaster
+import com.esv.tripplanner.core.navigation.IArgumentsProvider
+import com.esv.tripplanner.di.NewRouteComponent
 import com.esv.tripplanner.viewModels.NewRouteViewModel
 import com.esv.tripplanner.viewModels.viewModelFactories.NewRouteViewModelFactory
 import javax.inject.Inject
@@ -32,6 +35,9 @@ class NewRouteFragment : InjectableFragment() {
     @Inject
     lateinit var repository: ITripRepository
 
+    @Inject
+    lateinit var argumentProvider: IArgumentsProvider
+
 
     private lateinit var viewModel: NewRouteViewModel
     private lateinit var binding: NewRouteFragmentBinding
@@ -43,10 +49,7 @@ class NewRouteFragment : InjectableFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        arguments?.let {
-            val args = NewRouteFragmentArgs.fromBundle(it)
-            tripId = args.tripId
-        }
+        tripId = argumentProvider.getTripIdFromArgs(arguments)
 
         viewModel = ViewModelProvider(
             requireActivity(),
@@ -108,6 +111,8 @@ class NewRouteFragment : InjectableFragment() {
     }
 
     override fun performInjection() {
-        TripPlannerApplication.tripPlannerAppInstance.appComponent.inject(this)
+        NewRouteComponent.createComponent((requireActivity().application as AppWithFacade)
+            .getProvidersFacade())
+            .inject(this)
     }
 }

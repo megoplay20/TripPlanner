@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.esv.tripplanner.R
 import com.esv.tripplanner.databinding.PointOfInterestVisitPlanLayoutBinding
 import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.helpers.ITypeCaster
 
 class PoiVisitPlaceAdapter(
     val tripId: Int,

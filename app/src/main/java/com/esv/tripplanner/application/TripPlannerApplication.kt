@@ -1,11 +1,15 @@
 package com.esv.tripplanner.application
 
 import android.app.Application
+import com.esv.tripplanner.core.di.AppWithFacade
+import com.esv.tripplanner.core.di.ProvidersFacade
 import com.esv.tripplanner.di.AppComponent
+import com.esv.tripplanner.di.FacadeComponent
 
-open class TripPlannerApplication : Application() {
+open class TripPlannerApplication : Application(), AppWithFacade {
 
     lateinit var appComponent: AppComponent
+    lateinit var facadeComponent: FacadeComponent
 
     companion object{
         lateinit var tripPlannerAppInstance: TripPlannerApplication
@@ -15,10 +19,15 @@ open class TripPlannerApplication : Application() {
         super.onCreate()
         tripPlannerAppInstance = this
         this.createAppComponent()
+        facadeComponent = FacadeComponent.createComponent(this)
     }
 
     private fun createAppComponent(){
-            this.appComponent  = AppComponent.createComponent(this,applicationContext);
+            this.appComponent  = AppComponent.createComponent(this);
+    }
+
+    override fun getProvidersFacade(): ProvidersFacade {
+        return facadeComponent
     }
 
 }

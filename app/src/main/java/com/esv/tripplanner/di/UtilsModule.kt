@@ -2,30 +2,31 @@ package com.esv.tripplanner.di
 
 import android.app.Application
 import android.content.Context
+import com.esv.tripplanner.core.di.EmptyPoi
+import com.esv.tripplanner.core.di.RuDateFormat
 import com.esv.tripplanner.entities.Location
 import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.helpers.TimeSpan
+import com.esv.tripplanner.core.helpers.TimeSpan
 import com.esv.tripplanner.utils.DateProcessorImpl
-import com.esv.tripplanner.utils.IDateProcessor
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.helpers.IDateProcessor
+import com.esv.tripplanner.core.helpers.ITypeCaster
 import com.esv.tripplanner.utils.TypeCasterImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import javax.inject.Inject
 import javax.inject.Qualifier
 import javax.inject.Singleton
 
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class EmptyPoi
-
-@Retention(AnnotationRetention.BINARY)
-@Qualifier
-annotation class RuDateFormat
 
 @Module(includes = [UtilsModule.UtilsBinds::class])
 class UtilsModule {
+
+
+    @Provides
+    fun provideContext(app: Application): Context {
+            return app.applicationContext
+    }
+
 
     @Provides
     @EmptyPoi
@@ -45,11 +46,11 @@ class UtilsModule {
     abstract class UtilsBinds{
         @Singleton
         @Binds
-        abstract fun getTypeCaster(caster: TypeCasterImpl):ITypeCaster
+        abstract fun getTypeCaster(caster: TypeCasterImpl): ITypeCaster
 
         @Singleton
         @Binds
-        abstract fun getDateProcessor(dateProcessor: DateProcessorImpl):IDateProcessor
+        abstract fun getDateProcessor(dateProcessor: DateProcessorImpl): IDateProcessor
     }
 
 }

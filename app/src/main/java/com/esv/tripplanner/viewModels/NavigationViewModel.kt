@@ -4,7 +4,7 @@ import android.app.Application
 import android.view.View
 import androidx.databinding.Bindable
 import com.esv.tripplanner.BR
-import com.esv.tripplanner.helpers.AndroidObservableViewModel
+import com.esv.tripplanner.core.helpers.AndroidObservableViewModel
 import kotlinx.android.synthetic.main.content_main.view.*
 
 class NavigationViewModel(app: Application): AndroidObservableViewModel(app){

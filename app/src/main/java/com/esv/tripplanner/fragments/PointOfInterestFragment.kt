@@ -4,28 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.app.SharedElementCallback
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import com.esv.tripplanner.R
 import com.esv.tripplanner.application.TripPlannerApplication
 import com.esv.tripplanner.databinding.AddOrEditPointOfInterestBinding
-import com.esv.tripplanner.databinding.AddOrEditPointOfInterestVisitPlansBinding
-import com.esv.tripplanner.di.EmptyPoi
 
-import com.esv.tripplanner.entities.Location
 import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.helpers.TimeSpan
-import com.esv.tripplanner.repositories.ITripRepository
-import com.esv.tripplanner.utils.ITypeCaster
+import com.esv.tripplanner.core.data.repositories.ITripRepository
+import com.esv.tripplanner.core.di.AppWithFacade
+import com.esv.tripplanner.core.di.EmptyPoi
+import com.esv.tripplanner.core.helpers.ITypeCaster
+import com.esv.tripplanner.di.PointOfInterestComponent
+import com.esv.tripplanner.di.StartComponent
 import com.esv.tripplanner.viewModels.PointOfInterestViewModel
-import com.esv.tripplanner.viewModels.PointOfInterestVisitPlansViewModel
-import com.esv.tripplanner.viewModels.StartFragmentViewModel
 import com.esv.tripplanner.viewModels.viewModelFactories.RepositoryAwareViewModel
 import javax.inject.Inject
-import javax.inject.Qualifier
 
 class PointOfInterestFragment: InjectableFragment(), IBackPressAwareFragment {
 
@@ -76,7 +70,9 @@ class PointOfInterestFragment: InjectableFragment(), IBackPressAwareFragment {
     }
 
     override fun performInjection() {
-        TripPlannerApplication.tripPlannerAppInstance.appComponent.inject(this)
+        PointOfInterestComponent.createComponent((requireActivity().application as AppWithFacade)
+            .getProvidersFacade())
+            .inject(this);
     }
 
 
