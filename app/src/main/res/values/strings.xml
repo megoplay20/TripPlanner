@@ -3,22 +3,13 @@
     <string name="new_trip_text">Новый\nмаршрут</string>
     <string name="load_exisiting_route">Следовать\nмаршруту!</string>
     <string name="welcome_text">Путешествуй с Trip Planner! Добавляй достопримечателиности на карте и планируй свое путешествие!</string>
-    <string name="route_name_hint">Название маршрута</string>
-    <string name="route_date_hint">Планируемая дата</string>
-    <string name="PoinName">Название</string>
-    <string name="PoiDescription">Описание</string>
+
     <string name="addButtonLabel">+</string>
     <string name="startPoint">Начальная точка маршрута</string>
     <string name="placeToVisit">Место для посещения</string>
     <string name="timeSpent">Время на посещение, часов</string>
-    <string name="OpenTime">Открытие (8:30)</string>
-    <string name="CloseTime">Закрытие (18:00)</string>
-    <string name="latitude">Широта (59.67)</string>
-    <string name="latitudeHint">Долгота (66.33)</string>
-    <string name="WorkingTime">Рабочее время</string>
-    <string name="GeoCoder">Геокоординаты</string>
-    <string name="addPlace">Добавить место</string>
-    <string name="PlaceList">Список мест</string>
+
+
     <string name="Cancel">Отмена</string>
     <string name="Save">Сохранить</string>
     <string name="emptyRouteTitleText">Новый маршрут</string>

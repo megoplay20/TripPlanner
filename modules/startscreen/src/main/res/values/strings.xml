@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Trip Planner</string>
+    <string name="new_trip_text">Новый\nмаршрут</string>
+    <string name="load_exisiting_route">Следовать\nмаршруту!</string>
+    <string name="welcome_text">Путешествуй с Trip Planner! Добавляй достопримечателиности на карте и планируй свое путешествие!</string>
+    <string name="newEmptyTripTitile">Новый маршрут</string>
+    <string name="AppTitle">Trip planner</string>
+
+</resources>

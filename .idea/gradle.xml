@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/modules/core" />
             <option value="$PROJECT_DIR$/modules/newroute" />
             <option value="$PROJECT_DIR$/modules/pointofinterest" />
+            <option value="$PROJECT_DIR$/modules/shared_ui" />
             <option value="$PROJECT_DIR$/modules/startscreen" />
             <option value="$PROJECT_DIR$/modules/visitplan" />
           </set>

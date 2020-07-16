@@ -1,16 +1,14 @@
 package com.esv.tripplanner.di
 
 import android.app.Application
-import com.esv.tripplanner.core.di.IAppProvider
-import com.esv.tripplanner.core.di.IDatabaseProvider
-import com.esv.tripplanner.core.di.IUtilsProvider
-import com.esv.tripplanner.core.di.ProvidersFacade
+import com.esv.tripplanner.core.di.*
 import dagger.Component
 import javax.inject.Singleton
 
 
 @Singleton
-@Component(dependencies = [IAppProvider::class, IDatabaseProvider::class, IUtilsProvider::class], modules = [NavigatorModule::class])
+@Component(dependencies = [IAppProvider::class, IDatabaseProvider::class, IUtilsProvider::class],
+    modules = [NavigatorModule::class])
 interface FacadeComponent: ProvidersFacade {
 
     companion object{

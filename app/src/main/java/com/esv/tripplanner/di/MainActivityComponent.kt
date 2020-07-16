@@ -2,8 +2,6 @@ package com.esv.tripplanner.di
 
 import com.esv.tripplanner.TripPlannerMainActivity
 import com.esv.tripplanner.core.di.ProvidersFacade
-import com.esv.tripplanner.fragments.PointOfInterestFragment
-import com.esv.tripplanner.fragments.StartFragment
 import dagger.Component
 import javax.inject.Singleton
 

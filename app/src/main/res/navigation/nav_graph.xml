@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.esv.tripplanner.fragments.StartFragment"
+        android:name="com.esv.tripplanner.startscreen.fragments.StartFragment"
         android:label="StartFragment" >
         <action
             android:id="@+id/startNewRouteAction"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/newRouteFragment"
-        android:name="com.esv.tripplanner.fragments.NewRouteFragment"
+        android:name="com.esv.tripplanner.newroute.fragments.NewRouteFragment"
         android:label="NewRouteFragment" >
         <action
             android:id="@+id/addVisitPlanAction"
@@ -31,7 +31,7 @@
         android:label="LoadRouteFragment" />
     <fragment
         android:id="@+id/addVisitPlanFragment"
-        android:name="com.esv.tripplanner.fragments.AddVisitPlanFragment"
+        android:name="com.esv.tripplanner.visitplan.fragments.AddVisitPlanFragment"
         android:label="AddVisitPlanFragment" >
         <action
             android:id="@+id/addPoiActionFromVisitPlan"
@@ -42,6 +42,6 @@
     </fragment>
     <fragment
         android:id="@+id/pointOfInterestFragment"
-        android:name="com.esv.tripplanner.fragments.PointOfInterestFragment"
+        android:name="com.esv.tripplanner.pointofinterest.fragments.PointOfInterestFragment"
         android:label="PointOfInterestFragment" />
 </navigation>

@@ -11,11 +11,8 @@ import androidx.navigation.ui.NavigationUI
 import com.esv.tripplanner.core.di.AppWithFacade
 import com.esv.tripplanner.core.navigation.INavigationProvider
 import com.esv.tripplanner.databinding.ActivityMainBinding
-import com.esv.tripplanner.di.AppComponent
 import com.esv.tripplanner.di.MainActivityComponent
-import com.esv.tripplanner.di.StartComponent
-import com.esv.tripplanner.fragments.IBackPressAwareFragment
-import com.esv.tripplanner.navigation.Navigator
+import com.esv.tripplanner.core.ui.IBackPressAwareFragment
 import com.esv.tripplanner.viewModels.NavigationViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject

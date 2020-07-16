@@ -1,3 +1,5 @@
+include ':modules:shared_ui'
+include ':modules:shared_ui'
 include ':modules:pointofinterest'
 include ':modules:visitplan'
 include ':modules:newroute'

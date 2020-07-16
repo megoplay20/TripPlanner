@@ -1,0 +1,11 @@
+<resources>
+    <string name="addPlace">Добавить место</string>
+    <string name="PlaceList">Список мест</string>
+    <string name="AppTitle">Trip planner</string>
+    <string name="route_name_hint">Название маршрута</string>
+    <string name="route_date_hint">Планируемая дата</string>
+    <string name="startPoint">Начальная точка маршрута</string>
+    <string name="Change">Изменить</string>
+    <string name="Delete">Удалить</string>
+
+</resources>

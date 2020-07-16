@@ -1,12 +1,8 @@
 package com.esv.tripplanner.di
 
 import android.app.Application
-import com.esv.tripplanner.TripPlannerMainActivity
 import com.esv.tripplanner.core.di.IAppProvider
 import com.esv.tripplanner.core.di.IUtilsProvider
-import com.esv.tripplanner.fragments.AddVisitPlanFragment
-import com.esv.tripplanner.fragments.NewRouteFragment
-import com.esv.tripplanner.fragments.PointOfInterestFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
