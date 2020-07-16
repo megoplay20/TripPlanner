@@ -1,0 +1,7 @@
+<resources>
+
+
+    <item type="id" name="editTextChangeListenerId"/>
+    <item type="id" name="dataTypeId"/>
+
+</resources>

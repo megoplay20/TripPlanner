@@ -5,20 +5,18 @@ import android.app.Application
 import android.view.View
 import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
-import com.esv.tripplanner.entities.Location
-import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.core.helpers.AndroidObservableViewModel
-import com.esv.tripplanner.core.helpers.TimeHolder
-import com.esv.tripplanner.core.helpers.TimeSpan
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.data.entities.Location
+import com.esv.tripplanner.core_api.data.entities.PointOfInterest
+import com.esv.tripplanner.core_api.helpers.AndroidObservableViewModel
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.helpers.TimeHolder
+import com.esv.tripplanner.core_api.helpers.TimeSpan
 import kotlinx.coroutines.launch
 
 open class PointOfInterestViewModel(
     app: Application,
-    protected var repository: ITripRepository,
-    val navigator: INavigationProvider
+    protected var repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
+    val navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ) : AndroidObservableViewModel(app) {
     private lateinit var typeCaster: ITypeCaster
 

@@ -6,24 +6,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import com.esv.tripplanner.core.di.AppWithFacade
-import com.esv.tripplanner.core.navigation.INavigationProvider
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.ui.InjectableFragment
-import com.esv.tripplanner.core.viewModelFactories.CustomViewModelProviderFactory
+import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.ui.InjectableFragment
+import com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory
 import com.esv.tripplanner.startscreen.R
 import com.esv.tripplanner.startscreen.databinding.StartFragmentBinding
 import com.esv.tripplanner.startscreen.di.StartComponent
 import com.esv.tripplanner.startscreen.viewModels.StartFragmentViewModel
 import javax.inject.Inject
 
-class StartFragment : InjectableFragment() {
+class StartFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
 
     @Inject
-    lateinit var repository: ITripRepository
+    lateinit var repository: com.esv.tripplanner.core_api.repositories.ITripRepository
 
     @Inject
-    lateinit var navigationProvider: INavigationProvider
+    lateinit var navigationProvider: com.esv.tripplanner.core_api.navigation.INavigationProvider
 
     private lateinit  var viewModel: StartFragmentViewModel
 
@@ -41,7 +41,13 @@ class StartFragment : InjectableFragment() {
 
         viewModel = ViewModelProvider(
             requireActivity(),
-            CustomViewModelProviderFactory(){StartFragmentViewModel(this.requireActivity().application, repository, navigationProvider)}
+            com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory() {
+                StartFragmentViewModel(
+                    this.requireActivity().application,
+                    repository,
+                    navigationProvider
+                )
+            }
         ).get(StartFragmentViewModel::class.java)
 
         binding.viewModel = viewModel

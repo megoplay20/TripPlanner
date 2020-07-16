@@ -9,7 +9,7 @@
     type="com.esv.tripplanner.shared_ui.viewModels.PointOfInterestVisitPlansViewModel" />
 
 
-        <import type="com.esv.tripplanner.core.binding_converters.BindingConverters"/>
+        <import type="com.esv.tripplanner.core_api.binding_converters.BindingConverters"/>
 
     </data>
 

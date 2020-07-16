@@ -6,10 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
-import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.data.entities.PointOfInterest
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
 import com.esv.tripplanner.shared_ui.viewModels.PointOfInterestViewModel
 import com.esv.tripplanner.visitplan.R
 import com.esv.tripplanner.visitplan.databinding.PointOfInterestLayoutBinding
@@ -19,8 +19,8 @@ class PointOfInterestSpinnerAdapter(
     val app: Application, layoutId: Int,
     private var pointOfInterestList: MutableList<PointOfInterest>,
     private var typeCaster: ITypeCaster,
-    val repository: ITripRepository,
-    val navigator: INavigationProvider
+    val repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
+    val navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ) :
 
     ArrayAdapter<PointOfInterest>(app.applicationContext, layoutId, pointOfInterestList) {

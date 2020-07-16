@@ -85,6 +85,8 @@ dependencies {
     kapt 'com.google.dagger:dagger-compiler:2.13'
 
     implementation project(':modules:core')
+    implementation project(':modules:core_impl')
+    implementation project(':modules:core_api')
     implementation project(':modules:shared_ui')
     implementation project(':modules:startscreen')
     implementation project(':modules:newroute')

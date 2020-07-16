@@ -4,17 +4,17 @@ import android.app.Application
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.data.entities.PointOfInterest
+import com.esv.tripplanner.core_api.data.entities.PointOfInterestVisitPlan
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
 import kotlinx.coroutines.launch
 
 class PointOfInterestVisitPlansViewModel(
     app: Application,
-    repository: ITripRepository,
-    navigator: INavigationProvider
+    repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
+    navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ): PointOfInterestViewModel(
     app,
     repository,

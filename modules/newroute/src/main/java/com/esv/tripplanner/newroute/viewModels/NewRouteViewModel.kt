@@ -4,24 +4,20 @@ import com.esv.tripplanner.newroute.BR
 import android.app.Application
 import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavDirections
-import com.esv.tripplanner.entities.relation_classes.TripVisitPlansRelation
-import com.esv.tripplanner.core.helpers.AndroidObservableViewModel
-import com.esv.tripplanner.core.helpers.Event
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.IDateProcessor
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.data.entities.relation_classes.TripVisitPlansRelation
+import com.esv.tripplanner.core_api.helpers.AndroidObservableViewModel
+import com.esv.tripplanner.core_api.helpers.IDateProcessor
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
 import kotlinx.coroutines.launch
 import java.util.*
 import kotlin.properties.Delegates
 
 class NewRouteViewModel(
     app: Application,
-    private val repository: ITripRepository,
+    private val repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
     private val dateProcessor: IDateProcessor,
-    private val nav: INavigationProvider
+    private val nav: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ):
     AndroidObservableViewModel(app) {
 

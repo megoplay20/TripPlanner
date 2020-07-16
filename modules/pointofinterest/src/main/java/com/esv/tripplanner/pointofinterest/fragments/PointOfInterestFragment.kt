@@ -6,20 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.esv.tripplanner.core_api.data.entities.PointOfInterest
+import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.di.EmptyPoi
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.ui.IBackPressAwareFragment
+import com.esv.tripplanner.core_api.ui.InjectableFragment
 
-import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.di.AppWithFacade
-import com.esv.tripplanner.core.di.EmptyPoi
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigatorComponentsProvider
-import com.esv.tripplanner.core.ui.IBackPressAwareFragment
-import com.esv.tripplanner.core.ui.InjectableFragment
-import com.esv.tripplanner.shared_ui.viewModels.PointOfInterestViewModel
-import com.esv.tripplanner.core.viewModelFactories.CustomViewModelProviderFactory
-import com.esv.tripplanner.pointofinterest.R
 import com.esv.tripplanner.pointofinterest.R.*
 import com.esv.tripplanner.pointofinterest.databinding.AddOrEditPointOfInterestBinding
+import com.esv.tripplanner.shared_ui.viewModels.PointOfInterestViewModel
 import javax.inject.Inject
 
 class PointOfInterestFragment: InjectableFragment(),
@@ -33,10 +29,10 @@ class PointOfInterestFragment: InjectableFragment(),
     lateinit var emptyPoi: PointOfInterest
 
     @Inject
-    lateinit var repository: ITripRepository
+    lateinit var repository: com.esv.tripplanner.core_api.repositories.ITripRepository
 
     @Inject
-    lateinit var navComponent: INavigatorComponentsProvider
+    lateinit var navComponent: com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
 
     private lateinit var viewModel: PointOfInterestViewModel
 
@@ -54,7 +50,7 @@ class PointOfInterestFragment: InjectableFragment(),
 
         viewModel = ViewModelProvider(
             requireActivity(),
-            CustomViewModelProviderFactory(){
+            com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory() {
                 PointOfInterestViewModel(
                     this.requireActivity().application,
                     repository,

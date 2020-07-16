@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.data.entities.PointOfInterestVisitPlan
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
 import com.esv.tripplanner.newroute.R
 import com.esv.tripplanner.newroute.databinding.PointOfInterestVisitPlanLayoutBinding
 
@@ -17,8 +17,8 @@ class PoiVisitPlaceAdapter(
     private val app: Application,
     private var poiVisitPlaces: MutableList<PointOfInterestVisitPlan>,
     val typeCaster: ITypeCaster,
-    val repository: ITripRepository,
-    val navigator: INavigationProvider
+    val repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
+    val navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ) :
     RecyclerView.Adapter<PoiVisitPlacesViewHolder>() {
 

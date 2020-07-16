@@ -1,15 +1,16 @@
 package com.esv.tripplanner.di
 
 import android.app.Application
-import com.esv.tripplanner.core.di.IAppProvider
-import com.esv.tripplanner.core.di.IUtilsProvider
+import com.esv.tripplanner.core_api.di.IAppProvider
+import com.esv.tripplanner.core_api.di.IUtilsProvider
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [UtilsModule::class])
-interface AppComponent : IAppProvider, IUtilsProvider{
+interface AppComponent : IAppProvider,
+    IUtilsProvider {
 
     companion object{
         private var appComponent: AppComponent? = null

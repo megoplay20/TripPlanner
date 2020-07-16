@@ -7,30 +7,29 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.di.AppWithFacade
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigatorComponentsProvider
-import com.esv.tripplanner.core.ui.InjectableFragment
+import com.esv.tripplanner.core_api.data.entities.PointOfInterestVisitPlan
+import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
+import com.esv.tripplanner.core_api.ui.InjectableFragment
 import com.esv.tripplanner.shared_ui.viewModels.PointOfInterestVisitPlansViewModel
-import com.esv.tripplanner.core.viewModelFactories.CustomViewModelProviderFactory
+import com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory
 import com.esv.tripplanner.visitplan.R
 import com.esv.tripplanner.visitplan.adapters.NothingSelectedSpinnerAdapter
 import com.esv.tripplanner.visitplan.adapters.PointOfInterestSpinnerAdapter
 import com.esv.tripplanner.visitplan.databinding.AddOrEditPointOfInterestVisitPlansBinding
 import javax.inject.Inject
 
-class AddVisitPlanFragment: InjectableFragment() {
+class AddVisitPlanFragment: com.esv.tripplanner.core_api.ui.InjectableFragment() {
 
     @Inject
     lateinit var typeCaster: ITypeCaster
 
     @Inject
-    lateinit var repository: ITripRepository
+    lateinit var repository: com.esv.tripplanner.core_api.repositories.ITripRepository
 
     @Inject
-    lateinit var navComponent: INavigatorComponentsProvider
+    lateinit var navComponent: com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
 
     private lateinit var viewModel: PointOfInterestVisitPlansViewModel
     private var tripId = -1
@@ -53,7 +52,7 @@ class AddVisitPlanFragment: InjectableFragment() {
 
         viewModel = ViewModelProvider(
             requireActivity(),
-            CustomViewModelProviderFactory(){
+            com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory() {
                 PointOfInterestVisitPlansViewModel(
                     this.requireActivity().application,
                     repository,

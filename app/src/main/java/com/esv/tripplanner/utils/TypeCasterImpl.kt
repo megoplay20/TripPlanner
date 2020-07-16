@@ -1,6 +1,6 @@
 package com.esv.tripplanner.utils
 
-import com.esv.tripplanner.core.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
 import java.util.*
 import javax.inject.Inject
 

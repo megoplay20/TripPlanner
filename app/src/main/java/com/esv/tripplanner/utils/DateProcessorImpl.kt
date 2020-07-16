@@ -1,7 +1,7 @@
 package com.esv.tripplanner.utils
 
-import com.esv.tripplanner.core.di.RuDateFormat
-import com.esv.tripplanner.core.helpers.IDateProcessor
+import com.esv.tripplanner.core_api.di.RuDateFormat
+import com.esv.tripplanner.core_api.helpers.IDateProcessor
 import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*

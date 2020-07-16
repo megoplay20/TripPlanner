@@ -1,16 +1,16 @@
 package com.esv.tripplanner.newroute.di
 
-import com.esv.tripplanner.core.di.ProvidersFacade
+import com.esv.tripplanner.core_api.di.ProvidersFacade
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [ProvidersFacade::class]
+    dependencies = [com.esv.tripplanner.core_api.di.ProvidersFacade::class]
 )
 interface NewRouteComponent {
     companion object {
-        fun createComponent(providersFacade: ProvidersFacade): NewRouteComponent {
+        fun createComponent(providersFacade: com.esv.tripplanner.core_api.di.ProvidersFacade): NewRouteComponent {
             return DaggerNewRouteComponent.builder().providersFacade(providersFacade).build();
         }
     }

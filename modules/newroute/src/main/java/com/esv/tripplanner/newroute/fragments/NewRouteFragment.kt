@@ -9,13 +9,13 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.di.AppWithFacade
-import com.esv.tripplanner.core.helpers.IDateProcessor
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigatorComponentsProvider
-import com.esv.tripplanner.core.ui.InjectableFragment
-import com.esv.tripplanner.core.viewModelFactories.CustomViewModelProviderFactory
+import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.helpers.IDateProcessor
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
+import com.esv.tripplanner.core_api.ui.InjectableFragment
+import com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory
 import com.esv.tripplanner.newroute.R
 import com.esv.tripplanner.newroute.adapters.PoiVisitPlaceAdapter
 import com.esv.tripplanner.newroute.databinding.NewRouteFragmentBinding
@@ -23,7 +23,7 @@ import com.esv.tripplanner.newroute.di.NewRouteComponent
 import com.esv.tripplanner.newroute.viewModels.NewRouteViewModel
 import javax.inject.Inject
 
-class NewRouteFragment : InjectableFragment() {
+class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
 
     @Inject
     lateinit var typeCaster: ITypeCaster
@@ -32,10 +32,10 @@ class NewRouteFragment : InjectableFragment() {
     lateinit var dateProcessor: IDateProcessor
 
     @Inject
-    lateinit var repository: ITripRepository
+    lateinit var repository: com.esv.tripplanner.core_api.repositories.ITripRepository
 
     @Inject
-    lateinit var navComponent: INavigatorComponentsProvider
+    lateinit var navComponent: com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
 
 
     private lateinit var viewModel: NewRouteViewModel
@@ -52,8 +52,15 @@ class NewRouteFragment : InjectableFragment() {
 
         viewModel = ViewModelProvider(
             requireActivity(),
-            CustomViewModelProviderFactory(
-            ){NewRouteViewModel(requireActivity().application, repository, dateProcessor, navComponent.provideNavigator())}
+            com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory(
+            ) {
+                NewRouteViewModel(
+                    requireActivity().application,
+                    repository,
+                    dateProcessor,
+                    navComponent.provideNavigator()
+                )
+            }
         ).get(NewRouteViewModel::class.java)
 
         viewModel.init(tripId)

@@ -1,17 +1,17 @@
 package com.esv.tripplanner.startscreen.di
 
-import com.esv.tripplanner.core.di.ProvidersFacade
+import com.esv.tripplanner.core_api.di.ProvidersFacade
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(
-    dependencies = [ProvidersFacade::class]
+    dependencies = [com.esv.tripplanner.core_api.di.ProvidersFacade::class]
 )
 interface StartComponent {
 
     companion object {
-        fun createComponent(providersFacade: ProvidersFacade): StartComponent {
+        fun createComponent(providersFacade: com.esv.tripplanner.core_api.di.ProvidersFacade): StartComponent {
                 return DaggerStartComponent.builder().providersFacade(providersFacade).build();
         }
     }

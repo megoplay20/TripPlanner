@@ -1,12 +1,13 @@
 package com.esv.tripplanner.navigation
 
 import android.os.Bundle
-import com.esv.tripplanner.core.navigation.IArgumentsProvider
+import com.esv.tripplanner.core_api.navigation.IArgumentsProvider
 import com.esv.tripplanner.newroute.fragments.NewRouteFragmentArgs
 import com.esv.tripplanner.visitplan.fragments.AddVisitPlanFragmentArgs
 import javax.inject.Inject
 
-class ArgumentProvider @Inject constructor(): IArgumentsProvider {
+class ArgumentProvider @Inject constructor():
+    com.esv.tripplanner.core_api.navigation.IArgumentsProvider {
     override fun getTripIdFromArgs(arguments: Bundle?): Int {
         return arguments?.let {
             val args = NewRouteFragmentArgs.fromBundle(it)

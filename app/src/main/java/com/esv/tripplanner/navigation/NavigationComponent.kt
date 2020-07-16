@@ -1,12 +1,13 @@
 package com.esv.tripplanner.navigation
 
-import com.esv.tripplanner.core.navigation.IArgumentsProvider
-import com.esv.tripplanner.core.navigation.INavigationProvider
-import com.esv.tripplanner.core.navigation.INavigatorComponentsProvider
+import com.esv.tripplanner.core_api.navigation.IArgumentsProvider
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
 import javax.inject.Inject
 
-class NavigationComponent @Inject constructor(var nav:INavigationProvider, var args: IArgumentsProvider) : INavigatorComponentsProvider {
-    override fun provideNavigator(): INavigationProvider  = nav
-    override fun provideArguments(): IArgumentsProvider = args
-    override fun provideNavigatorComponents(): INavigatorComponentsProvider  = this
+class NavigationComponent @Inject constructor(var nav: com.esv.tripplanner.core_api.navigation.INavigationProvider, var args: com.esv.tripplanner.core_api.navigation.IArgumentsProvider) :
+    com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider {
+    override fun provideNavigator(): com.esv.tripplanner.core_api.navigation.INavigationProvider = nav
+    override fun provideArguments(): com.esv.tripplanner.core_api.navigation.IArgumentsProvider = args
+    override fun provideNavigatorComponents(): com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider = this
 }

@@ -1,9 +1,8 @@
 package com.esv.tripplanner.application
 
 import android.app.Application
-import com.esv.tripplanner.core.di.AppWithFacade
-import com.esv.tripplanner.core.di.ProvidersFacade
-import com.esv.tripplanner.di.AppComponent
+import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.di.ProvidersFacade
 import com.esv.tripplanner.di.FacadeComponent
 
 open class TripPlannerApplication : Application(), AppWithFacade {
@@ -21,7 +20,7 @@ open class TripPlannerApplication : Application(), AppWithFacade {
     }
 
 
-    override fun getProvidersFacade(): ProvidersFacade {
+    override fun getProvidersFacade(): com.esv.tripplanner.core_api.di.ProvidersFacade {
         return facadeComponent
     }
 

@@ -2,14 +2,14 @@ package com.esv.tripplanner.di
 
 import android.app.Application
 import android.content.Context
-import com.esv.tripplanner.core.di.EmptyPoi
-import com.esv.tripplanner.core.di.RuDateFormat
-import com.esv.tripplanner.entities.Location
-import com.esv.tripplanner.entities.PointOfInterest
-import com.esv.tripplanner.core.helpers.TimeSpan
+import com.esv.tripplanner.core_api.data.entities.Location
+import com.esv.tripplanner.core_api.data.entities.PointOfInterest
+import com.esv.tripplanner.core_api.di.EmptyPoi
+import com.esv.tripplanner.core_api.di.RuDateFormat
+import com.esv.tripplanner.core_api.helpers.IDateProcessor
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.helpers.TimeSpan
 import com.esv.tripplanner.utils.DateProcessorImpl
-import com.esv.tripplanner.core.helpers.IDateProcessor
-import com.esv.tripplanner.core.helpers.ITypeCaster
 import com.esv.tripplanner.utils.TypeCasterImpl
 import dagger.Binds
 import dagger.Module
@@ -29,7 +29,7 @@ class UtilsModule {
 
     @Provides
     @EmptyPoi
-    fun getEmptyPoi():PointOfInterest{
+    fun getEmptyPoi(): PointOfInterest {
         return PointOfInterest("", "", Location(0.0,0.0),
             TimeSpan()
         )

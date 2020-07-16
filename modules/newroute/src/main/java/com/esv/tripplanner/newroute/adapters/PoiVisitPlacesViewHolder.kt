@@ -3,10 +3,10 @@ package com.esv.tripplanner.newroute.adapters
 import android.app.Application
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.esv.tripplanner.entities.PointOfInterestVisitPlan
-import com.esv.tripplanner.core.data.repositories.ITripRepository
-import com.esv.tripplanner.core.helpers.ITypeCaster
-import com.esv.tripplanner.core.navigation.INavigationProvider
+import com.esv.tripplanner.core_api.data.entities.PointOfInterestVisitPlan
+import com.esv.tripplanner.core_api.helpers.ITypeCaster
+import com.esv.tripplanner.core_api.repositories.ITripRepository
+import com.esv.tripplanner.core_api.navigation.INavigationProvider
 import com.esv.tripplanner.newroute.databinding.PointOfInterestVisitPlanLayoutBinding
 import com.esv.tripplanner.shared_ui.viewModels.PointOfInterestVisitPlansViewModel
 
@@ -16,8 +16,8 @@ class PoiVisitPlacesViewHolder(
     private val typeCaster: ITypeCaster,
     val app: Application,
     val tripId: Int,
-    val repository: ITripRepository,
-    val navigator: INavigationProvider
+    val repository: com.esv.tripplanner.core_api.repositories.ITripRepository,
+    val navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ) : RecyclerView.ViewHolder(itemView) {
 
     fun bindItem(
