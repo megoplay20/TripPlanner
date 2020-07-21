@@ -4,7 +4,23 @@
     <!-- Other values-->
     <attr name="removeItem" format="reference" />
 
+    <declare-styleable name="TripPlanPlacesIndicatorView">
+        <attr name="fitElements" format="boolean"/>
+        <attr name="strokeSize" format="float"/>
+        <attr name="textBackgroundColor" format="color"/>
+        <attr name="itemColor" format="color"/>
+        <attr name="fillItems" format="boolean"/>
+    </declare-styleable>
 
+
+    <declare-styleable name="QuadrantLayout_Layout">
+        <attr name="layout_viewPosition" format="enum">
+            <enum name="topLeft" value="0"/>
+            <enum name="topRight" value="1"/>
+            <enum name="bottomLeft" value="2"/>
+            <enum name="bottomRight" value="3"/>
+        </attr>
+    </declare-styleable>
 
 
 
