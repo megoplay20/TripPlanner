@@ -1,4 +1,4 @@
-package com.otus.advancedviews
+package com.esv.tripplanner.shared_ui.customUiControls
 
 import android.content.Context
 import android.util.AttributeSet
@@ -116,7 +116,12 @@ class QuadrantLayout (context: Context, attributeSet: AttributeSet) : ViewGroup(
         private fun readStyleParams(context: Context, attributeSet: AttributeSet) {
             val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.QuadrantLayout_Layout)
             try {
-                viewPosition = ViewPosition.fromInt(typedArray.getInt(R.styleable.QuadrantLayout_Layout_layout_viewPosition, 0))
+                viewPosition = ViewPosition.fromInt(
+                    typedArray.getInt(
+                        R.styleable.QuadrantLayout_Layout_layout_viewPosition,
+                        0
+                    )
+                )
             } finally {
                 typedArray.recycle()
             }

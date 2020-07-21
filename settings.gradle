@@ -1,3 +1,4 @@
+include ':modules:loadroute'
 include ':modules:core_impl'
 include ':modules:core_api'
 include ':modules:shared_ui'

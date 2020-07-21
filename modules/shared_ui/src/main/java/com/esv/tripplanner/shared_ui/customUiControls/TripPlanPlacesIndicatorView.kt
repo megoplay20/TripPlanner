@@ -1,4 +1,4 @@
-package com.otus.advancedviews
+package com.esv.tripplanner.shared_ui.customUiControls
 
 import android.content.Context
 import android.graphics.*
@@ -80,7 +80,7 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)
         when (widthMode) {
             MeasureSpec.UNSPECIFIED -> Log.d(
-                TripPlanPlacesIndicatorView.TAG,
+                TAG,
                 "onMeasure UNSPECIFIED"
             )
             MeasureSpec.AT_MOST,
