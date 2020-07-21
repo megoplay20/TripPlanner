@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="loadTripList">Список ранее созданных маршрутов</string>
+    <string name="TripName">Название маршрута</string>
+    <string name="TotalTime">Общее время</string>
 </resources>
