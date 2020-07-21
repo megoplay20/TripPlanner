@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Cancel">Отмена</string>
+    <string name="Change">Изменить</string>
+    <string name="ChoosePlace">Выберите место …</string>
+    <string name="Delete">Удалить</string>
+    <string name="Save">Сохранить</string>
+    <string name="addButtonLabel">+</string>
+    <string name="emptyRouteTitleText">Новый маршрут</string>
+    <string name="newEmptyTripTitile">Новый маршрут</string>
+    <string name="placeToVisit">Место для посещения</string>
+    <string name="startPoint">Начальная точка маршрута</string>
+    <string name="timeSpent">Время на посещение, часов</string>
+</resources>

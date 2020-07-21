@@ -1,0 +1,13 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_baseline_done_all_24
+drawable ic_baseline_report_problem_24
+id isOutdated
+id isPlanned
+id placesList
+id textView
+layout load_route_fragment
+layout trip_item
+string TotalTime
+string TripName
+string loadTripList

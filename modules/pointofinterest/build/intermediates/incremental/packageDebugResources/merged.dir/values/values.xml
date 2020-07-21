@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="CloseTime">Закрытие (18:00)</string>
+    <string name="GeoCoder">Геокоординаты</string>
+    <string name="OpenTime">Открытие (8:30)</string>
+    <string name="PoiDescription">Описание</string>
+    <string name="PoinName">Название</string>
+    <string name="WorkingTime">Рабочее время</string>
+    <string name="latitude">Широта (59.67)</string>
+    <string name="latitudeHint">Долгота (66.33)</string>
+</resources>

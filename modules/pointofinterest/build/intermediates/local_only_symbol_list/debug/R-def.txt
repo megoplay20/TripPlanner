@@ -1,0 +1,19 @@
+R_DEF: Internal format may change without notice
+local
+id closeTime
+id latitude
+id longitude
+id poiDescription
+id poiName
+id poiOpenTime
+id textView3
+id textView4
+layout add_or_edit_point_of_interest
+string CloseTime
+string GeoCoder
+string OpenTime
+string PoiDescription
+string PoinName
+string WorkingTime
+string latitude
+string latitudeHint

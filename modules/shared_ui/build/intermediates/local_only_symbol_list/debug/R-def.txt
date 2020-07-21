@@ -1,0 +1,28 @@
+R_DEF: Internal format may change without notice
+local
+attr? fillItems
+attr? fitElements
+attr? itemColor
+attr? layout_viewPosition
+attr removeItem
+attr? strokeSize
+attr? textBackgroundColor
+color colorAccent
+color colorPrimary
+color colorPrimaryDark
+color removeColor
+drawable ic_launcher_background
+drawable ic_launcher_foreground
+id bottomLeft
+id bottomRight
+id topLeft
+id topRight
+mipmap ic_launcher
+mipmap ic_launcher_foreground
+mipmap ic_launcher_round
+style AppTheme
+style AppTheme.AppBarOverlay
+style AppTheme.NoActionBar
+style AppTheme.PopupOverlay
+styleable QuadrantLayout_Layout layout_viewPosition
+styleable TripPlanPlacesIndicatorView fitElements strokeSize textBackgroundColor itemColor fillItems

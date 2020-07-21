@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr format="reference" name="removeItem"/>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="removeColor">#9A1818</color>
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+<item name="removeItem">@color/removeColor</item>
+    </style>
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <declare-styleable name="QuadrantLayout_Layout">
+        <attr format="enum" name="layout_viewPosition">
+            <enum name="topLeft" value="0"/>
+            <enum name="topRight" value="1"/>
+            <enum name="bottomLeft" value="2"/>
+            <enum name="bottomRight" value="3"/>
+        </attr>
+    </declare-styleable>
+    <declare-styleable name="TripPlanPlacesIndicatorView">
+        <attr format="boolean" name="fitElements"/>
+        <attr format="float" name="strokeSize"/>
+        <attr format="color" name="textBackgroundColor"/>
+        <attr format="color" name="itemColor"/>
+        <attr format="boolean" name="fillItems"/>
+
+    </declare-styleable>
+</resources>

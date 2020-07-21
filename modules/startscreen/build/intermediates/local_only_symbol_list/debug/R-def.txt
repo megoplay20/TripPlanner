@@ -1,0 +1,19 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_add_black_24dp
+drawable ic_directions_walk_black_24dp
+drawable ic_launcher_background
+id button
+id card
+id imageView2
+id linearLayout2
+layout start_fragment
+mipmap ic_launcher
+mipmap ic_launcher_foreground
+mipmap ic_launcher_round
+string AppTitle
+string app_name
+string load_exisiting_route
+string newEmptyTripTitile
+string new_trip_text
+string welcome_text

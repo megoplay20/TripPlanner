@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="TotalTime">Общее время</string>
+    <string name="TripName">Название маршрута</string>
+    <string name="loadTripList">Список ранее созданных маршрутов</string>
+</resources>

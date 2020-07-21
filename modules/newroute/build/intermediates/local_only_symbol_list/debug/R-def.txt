@@ -1,0 +1,28 @@
+R_DEF: Internal format may change without notice
+local
+drawable ic_add_black_24dp
+drawable ic_directions_walk_black_24dp
+drawable ic_launcher_background
+drawable ic_remove_circle_outline_black_24dp
+id barrier
+id button
+id date
+id imageView
+id linearLayout
+id name
+id placesList
+id switch1
+id textView2
+layout new_route_fragment
+layout point_of_interest_visit_plan_layout
+mipmap ic_launcher
+mipmap ic_launcher_foreground
+mipmap ic_launcher_round
+string AppTitle
+string Change
+string Delete
+string PlaceList
+string addPlace
+string route_date_hint
+string route_name_hint
+string startPoint
