@@ -10,6 +10,7 @@
         <attr name="textBackgroundColor" format="color"/>
         <attr name="itemColor" format="color"/>
         <attr name="fillItems" format="boolean"/>
+
     </declare-styleable>
 
 

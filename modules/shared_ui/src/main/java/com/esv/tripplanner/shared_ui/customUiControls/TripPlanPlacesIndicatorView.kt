@@ -27,6 +27,9 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
     private var itemStrokeWidth = 10f
     private val paddingRadiusFraction = 0.5f
     private val strokeRadiusFraction = 0.5f
+    private var placesCount: Number = 0
+    private var noPlacesText: String = "Нет элементов"
+
 
     init {
         val typedArray =
@@ -73,8 +76,6 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
     }
 
 
-    private var placesCount: Number = 0
-    private var noPlacesText: String = "Нет элементов"
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val widthMode = MeasureSpec.getMode(widthMeasureSpec)

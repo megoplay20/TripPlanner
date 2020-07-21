@@ -1,98 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
 
-    <com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout
-        android:layout_width="0dp"
-        android:layout_height="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        <variable
+            name="viewModel"
+            type="com.esv.tripplanner.loadroute.viewModels.TripItemViewModel" />
 
-        <com.esv.tripplanner.shared_ui.customUiControls.TripPlanPlacesIndicatorView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fillItems="true"
-            app:fitElements="true"
-            app:itemColor="@color/colorPrimary"
-            app:layout_viewPosition="topLeft">
+    </data>
 
-
-        </com.esv.tripplanner.shared_ui.customUiControls.TripPlanPlacesIndicatorView>
-
-        <ImageView
-            android:id="@+id/isPlanned"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            app:layout_viewPosition="topRight"
-            android:backgroundTint="@color/colorPrimary"
-            android:tint="@color/colorPrimary"
-            app:srcCompat="@drawable/ic_baseline_done_all_24" />
-
-        <ImageView
-            android:id="@+id/isOutdated"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:scaleType="fitCenter"
-            app:layout_viewPosition="bottomLeft"
-            android:backgroundTint="@color/colorAccent"
-            android:tint="@color/colorAccent"
-            app:srcCompat="@drawable/ic_baseline_report_problem_24" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
 
         <com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            app:layout_viewPosition="bottomRight"
-            >
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_viewPosition="topLeft"
-                android:text="@string/TripName">
+            <com.esv.tripplanner.shared_ui.customUiControls.TripPlanPlacesIndicatorView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:fillItems="true"
+                app:fitElements="true"
+                app:itemCount="@{viewModel.tripItemCount}"
+                app:itemColor="@color/colorPrimary"
+                app:layout_viewPosition="topLeft">
 
-            </TextView>
 
+            </com.esv.tripplanner.shared_ui.customUiControls.TripPlanPlacesIndicatorView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/isPlanned"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 app:layout_viewPosition="topRight"
-                android:text="@string/TotalTime">
+                android:backgroundTint="@color/colorPrimary"
+                android:tint="@color/colorPrimary"
+                app:srcCompat="@drawable/ic_baseline_done_all_24" />
 
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+            <ImageView
+                android:id="@+id/isOutdated"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
                 app:layout_viewPosition="bottomLeft"
-                android:textFontWeight="500"
-                tools:text="ООО Маршрута">
+                android:backgroundTint="@color/colorAccent"
+                android:tint="@color/colorAccent"
+                app:srcCompat="@drawable/ic_baseline_report_problem_24" />
 
-            </TextView>
 
-            <TextView
-                android:layout_width="match_parent"
+            <com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout
                 android:layout_height="match_parent"
-                app:layout_viewPosition="bottomRight"
-                android:textFontWeight="500"
-                tools:text="5 часов">
+                android:layout_width="match_parent"
+                app:layout_viewPosition="bottomRight">
 
-            </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_viewPosition="topLeft"
+                    android:text="@string/TripName">
+
+                </TextView>
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_viewPosition="topRight"
+                    android:text="@string/TotalTime">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_viewPosition="bottomLeft"
+                    android:textFontWeight="500"
+                    tools:text="ООО Маршрута">
+
+                </TextView>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_viewPosition="bottomRight"
+                    android:textFontWeight="500"
+                    tools:text="5 часов">
+
+                </TextView>
+
+
+            </com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout>
 
 
         </com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout>
 
-
-    </com.esv.tripplanner.shared_ui.customUiControls.QuadrantLayout>
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
