@@ -6,6 +6,10 @@ import androidx.navigation.NavDirections
 
 interface INavigationProvider {
 
+    fun startLoadRouteById(tripId: Int)
+
+    fun startLoadRoutesAction()
+
     fun startNewRouteAction(tripId: Int)
 
     fun startAddVisitPlanAction(tripId: Int)

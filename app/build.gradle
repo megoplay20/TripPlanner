@@ -90,6 +90,7 @@ dependencies {
     implementation project(':modules:shared_ui')
     implementation project(':modules:startscreen')
     implementation project(':modules:newroute')
+    implementation project(':modules:loadroute')
     implementation project(':modules:pointofinterest')
     implementation project(':modules:visitplan')
 

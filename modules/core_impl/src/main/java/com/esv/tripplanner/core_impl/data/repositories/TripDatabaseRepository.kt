@@ -50,6 +50,10 @@ class TripDatabaseRepository(private val database: RoomDatabase, private val tri
         return tripDao.loadTripWithVisitPlanRelation(tripId)
     }
 
+    override fun getTrips(): LiveData<List<TripVisitPlansRelation>> {
+        return tripDao.loadTripWithVisitPlanRelation()
+    }
+
     override fun getPointOfInterest(): LiveData<List<PointOfInterest>> {
         return poiDao.loadPointOfInterest()
     }

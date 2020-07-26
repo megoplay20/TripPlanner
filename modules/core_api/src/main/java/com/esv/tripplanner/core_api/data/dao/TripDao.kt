@@ -34,6 +34,10 @@ interface TripDao{
     fun loadTripWithVisitPlanRelation(tripId:Int): LiveData<List<TripVisitPlansRelation>>
 
     @Transaction
+    @Query("SELECT * FROM trip")
+    fun loadTripWithVisitPlanRelation(): LiveData<List<TripVisitPlansRelation>>
+
+    @Transaction
     @Query("SELECT * FROM trippointofinterestvisitplanjoin WHERE tripId = :tripId")
     fun loadTripPoiVisitPlanJoin(tripId:Int): LiveData<List<TripPoiVisitPlanJoinRelation>>
 

@@ -20,6 +20,8 @@ interface ITripRepository {
 
     fun getVisitPlansForTrip(tripId:Int): LiveData<List<TripVisitPlansRelation>>
 
+    fun getTrips(): LiveData<List<TripVisitPlansRelation>>
+
     suspend fun getPointOfInterestById(id: Int): PointOfInterest?;
 
     fun getPointOfInterest(): LiveData<List<PointOfInterest>>

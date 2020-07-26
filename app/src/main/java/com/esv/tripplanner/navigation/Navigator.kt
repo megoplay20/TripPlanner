@@ -9,6 +9,14 @@ import javax.inject.Inject
 
 class Navigator @Inject constructor():
     com.esv.tripplanner.core_impl.navigation.BaseNavigator()  {
+    override fun startLoadRouteById(tripId: Int) {
+
+    }
+
+    override fun startLoadRoutesAction() {
+        safeNavigate(StartFragmentDirections.loadRouteAction())
+    }
+
     override fun startNewRouteAction(tripId: Int) {
          safeNavigate(StartFragmentDirections.startNewRouteAction(tripId))
     }

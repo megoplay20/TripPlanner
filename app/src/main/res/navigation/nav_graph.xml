@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/loadRouteFragment"
-        android:name="com.esv.tripplanner.fragments.LoadRouteFragment"
+        android:name="com.esv.tripplanner.loadroute.fragments.LoadRouteFragment"
         android:label="LoadRouteFragment" />
     <fragment
         android:id="@+id/addVisitPlanFragment"

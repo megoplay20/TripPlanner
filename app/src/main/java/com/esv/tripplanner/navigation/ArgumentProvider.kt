@@ -21,4 +21,8 @@ class ArgumentProvider @Inject constructor():
             args.tripId
         } ?: -1
     }
+
+    override fun getTripIdForLoadRoute(arguments: Bundle?): Int {
+        TODO("Not yet implemented")
+    }
 }

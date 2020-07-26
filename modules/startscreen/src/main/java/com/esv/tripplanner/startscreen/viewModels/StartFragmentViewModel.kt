@@ -25,6 +25,6 @@ class StartFragmentViewModel(
     }
 
     fun navigateToLoadExistingRoute(){
-
+            navigator?.startLoadRoutesAction()
     }
 }
