@@ -9,10 +9,12 @@
         android:label="StartFragment" >
         <action
             android:id="@+id/startNewRouteAction"
-            app:destination="@id/newRouteFragment" />
+            app:destination="@id/newRouteFragment"
+            app:enterAnim="@anim/zoom_in_zoom_out_rotate" />
         <action
             android:id="@+id/loadRouteAction"
-            app:destination="@id/loadRouteFragment" />
+            app:destination="@id/loadRouteFragment"
+            app:enterAnim="@anim/zoom_in" />
     </fragment>
     <fragment
         android:id="@+id/newRouteFragment"
@@ -20,7 +22,8 @@
         android:label="NewRouteFragment" >
         <action
             android:id="@+id/addVisitPlanAction"
-            app:destination="@id/addVisitPlanFragment" />
+            app:destination="@id/addVisitPlanFragment"
+            app:enterAnim="@anim/zoom_in_and_rotate" />
         <argument
             android:name="tripId"
             app:argType="integer" />
@@ -35,7 +38,11 @@
         android:label="AddVisitPlanFragment" >
         <action
             android:id="@+id/addPoiActionFromVisitPlan"
-            app:destination="@id/pointOfInterestFragment" />
+            app:destination="@id/pointOfInterestFragment"
+            app:enterAnim="@anim/enter_zoom_in"
+            app:exitAnim="@anim/exit_zoom_out"
+            app:popEnterAnim="@anim/enter_zoom_in"
+            app:popExitAnim="@anim/exit_zoom_out" />
         <argument
             android:name="tripId"
             app:argType="integer" />
