@@ -89,6 +89,7 @@
                     android:layout_height="match_parent"
                     app:layout_viewPosition="bottomLeft"
                     android:textFontWeight="500"
+                    android:textStyle="bold"
                     android:text="@{viewModel.tripName}"
                     tools:text="ООО Маршрута">
 

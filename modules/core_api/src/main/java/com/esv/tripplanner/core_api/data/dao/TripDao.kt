@@ -14,7 +14,7 @@ import com.esv.tripplanner.core_api.data.entities.relation_classes.TripVisitPlan
 interface TripDao{
 
     @Query("SELECT * FROM trip")
-    fun loadTrips():List<Trip>
+    suspend fun loadTrips():List<Trip>
 
 
     @Query("SELECT * FROM trip  WHERE id = :tripId")
@@ -22,16 +22,22 @@ interface TripDao{
 
     @Transaction
     @Query("SELECT * FROM trip WHERE id = :tripId")
-    fun loadTripWithRelations(tripId:Int):List<TripVisitPlansAndPoiRelation>
+    suspend fun loadTripWithRelations(tripId:Int):TripVisitPlansAndPoiRelation
+
+
 
 
     @Transaction
     @Query("SELECT * FROM trip WHERE id = :tripId")
-    fun loadTripWithVisitPlanRelationNoLiveData(tripId:Int): List<TripVisitPlansRelation>
+    suspend fun loadTripWithVisitPlanRelationNoLiveData(tripId:Int): List<TripVisitPlansRelation>
 
     @Transaction
     @Query("SELECT * FROM trip WHERE id = :tripId")
     fun loadTripWithVisitPlanRelation(tripId:Int): LiveData<List<TripVisitPlansRelation>>
+
+    @Transaction
+    @Query("SELECT * FROM trip")
+    suspend fun loadTripWithVisitPlanRelationNoLiveData(): List<TripVisitPlansRelation>
 
     @Transaction
     @Query("SELECT * FROM trip")
@@ -45,15 +51,26 @@ interface TripDao{
     @Query("SELECT * FROM trip WHERE id = :tripId")
     suspend fun loadTripWithRouteRelation(tripId:Int):List<TripRouteRelation>
 
+    @Transaction
+    @Query("SELECT * FROM trip WHERE id = :tripId")
+    fun loadTripWithRouteRelationLiveData(tripId:Int):LiveData<List<TripRouteRelation>>
+
     @Insert
     suspend fun save(trip: Trip): Long
 
     @Update
     suspend fun update(trip: Trip)
 
+    @Delete
+    suspend fun deleteTrip(trip: Trip)
+
+    @Transaction
+    @Query("DELETE FROM triproutejoin WHERE tripId = :tripId")
+    suspend fun deleteExistingRoute(tripId:Int)
+
     @Insert
     suspend fun save(tripPoiVisitPlanJoin: TripPointOfInterestVisitPlanJoin)
 
     @Insert
-    suspend fun save(tripRouteJoin: TripRouteJoin)
+    suspend fun save(tripRouteJoin: TripRouteJoin): Long
 }

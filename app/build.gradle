@@ -93,6 +93,8 @@ dependencies {
     implementation project(':modules:loadroute')
     implementation project(':modules:pointofinterest')
     implementation project(':modules:visitplan')
+    implementation project(':modules:network')
+    implementation project(':modules:followroute')
 
 
 }

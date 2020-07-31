@@ -10,7 +10,10 @@
         <action
             android:id="@+id/startNewRouteAction"
             app:destination="@id/newRouteFragment"
-            app:enterAnim="@anim/zoom_in_zoom_out_rotate" />
+            app:enterAnim="@anim/zoom_in_zoom_out_rotate"
+            app:exitAnim="@anim/exit_zoom_out"
+            app:popEnterAnim="@anim/enter_zoom_in"
+            app:popExitAnim="@anim/exit_zoom_out" />
         <action
             android:id="@+id/loadRouteAction"
             app:destination="@id/loadRouteFragment"
@@ -23,15 +26,29 @@
         <action
             android:id="@+id/addVisitPlanAction"
             app:destination="@id/addVisitPlanFragment"
-            app:enterAnim="@anim/zoom_in_and_rotate" />
+            app:enterAnim="@anim/zoom_in_and_rotate"
+            app:exitAnim="@anim/exit_zoom_out"
+            app:popEnterAnim="@anim/enter_zoom_in"
+            app:popExitAnim="@anim/exit_zoom_out" />
         <argument
             android:name="tripId"
             app:argType="integer" />
+        <action
+            android:id="@+id/followRouteAction"
+            app:destination="@id/followRouteFragment" />
     </fragment>
     <fragment
         android:id="@+id/loadRouteFragment"
         android:name="com.esv.tripplanner.loadroute.fragments.LoadRouteFragment"
-        android:label="LoadRouteFragment" />
+        android:label="LoadRouteFragment" >
+        <action
+            android:id="@+id/loadExistingRouteById"
+            app:destination="@id/newRouteFragment"
+            app:enterAnim="@anim/enter_zoom_in"
+            app:exitAnim="@anim/exit_zoom_out"
+            app:popEnterAnim="@anim/enter_zoom_in"
+            app:popExitAnim="@anim/exit_zoom_out" />
+    </fragment>
     <fragment
         android:id="@+id/addVisitPlanFragment"
         android:name="com.esv.tripplanner.visitplan.fragments.AddVisitPlanFragment"
@@ -51,4 +68,12 @@
         android:id="@+id/pointOfInterestFragment"
         android:name="com.esv.tripplanner.pointofinterest.fragments.PointOfInterestFragment"
         android:label="PointOfInterestFragment" />
+    <fragment
+        android:id="@+id/followRouteFragment"
+        android:name="com.esv.tripplanner.followroute.fragments.FollowRouteFragment"
+        android:label="FollowRouteFragment" >
+        <argument
+            android:name="tripId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

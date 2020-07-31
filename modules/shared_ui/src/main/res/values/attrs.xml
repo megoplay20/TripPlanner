@@ -23,6 +23,23 @@
         </attr>
     </declare-styleable>
 
+    <declare-styleable name="ToggleLayout">
+        <attr name="hideContentByDefault" format="boolean"/>
+    </declare-styleable>
+
+
+
+    <declare-styleable name="ToggleLayout_Layout">
+        <attr name="layout_childDesiredHeight" format="dimension"/>
+        <attr name="layout_childDesiredWidth" format="dimension"/>
+
+        <attr name="layout_viewRole" format="enum">
+            <enum name="HIDE_BUTTON" value="0"/>
+            <enum name="SHOW_BUTTON" value="1"/>
+            <enum name="CONTENT" value="2"/>
+            <enum name="SECTION_LABEL" value="3"/>
+        </attr>
+    </declare-styleable>
 
 
 

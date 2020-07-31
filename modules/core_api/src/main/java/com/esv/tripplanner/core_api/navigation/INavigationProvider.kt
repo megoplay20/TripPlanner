@@ -6,6 +6,8 @@ import androidx.navigation.NavDirections
 
 interface INavigationProvider {
 
+    fun followRoute(tripId: Int)
+
     fun startLoadRouteById(tripId: Int)
 
     fun startLoadRoutesAction()

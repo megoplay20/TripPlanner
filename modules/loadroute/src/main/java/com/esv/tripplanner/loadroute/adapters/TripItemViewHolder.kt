@@ -19,13 +19,19 @@ class TripItemViewHolder(
     val navigator: com.esv.tripplanner.core_api.navigation.INavigationProvider
 ) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
 
+
+    init {
+        itemView.setOnClickListener(this)
+    }
+
     lateinit var viewModel: TripItemViewModel
     fun bindItem(
         tripRelation: TripVisitPlansRelation
     ) {
-        val viewModel = TripItemViewModel(app, tripRelation)
+        viewModel = TripItemViewModel(app, tripRelation)
         this.binding.viewModel = viewModel
         this.binding.executePendingBindings()
+
     }
 
     override fun onClick(v: View?) {

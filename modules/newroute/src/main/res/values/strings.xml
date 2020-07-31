@@ -7,5 +7,10 @@
     <string name="startPoint">Начальная точка маршрута</string>
     <string name="Change">Изменить</string>
     <string name="Delete">Удалить</string>
+    <string name="RouteWasBuild">Маршрут построен</string>
+    <string name="followRoute">Следовать</string>
+    <string name="RebuildRoute">Перестроить</string>
+    <string name="BuildRoute">Построить</string>
+    <string name="RouteBuildingSection">Построение маршрута</string>
 
 </resources>

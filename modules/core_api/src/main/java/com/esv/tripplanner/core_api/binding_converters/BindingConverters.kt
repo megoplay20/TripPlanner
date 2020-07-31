@@ -1,6 +1,7 @@
 package com.esv.tripplanner.core_api.binding_converters
 
 
+import android.view.View
 import androidx.databinding.InverseMethod
 
 object BindingConverters {
@@ -19,6 +20,18 @@ object BindingConverters {
         } catch (e: Exception) {
             0.0
         }
+    }
+
+    @JvmStatic
+    @InverseMethod("visibilityToBool")
+    fun boolToVisibility(value: Boolean): Int {
+        return if(value){
+            View.VISIBLE}else{View.GONE}
+    }
+
+    @JvmStatic
+    fun visibilityToBool(value: Int): Boolean {
+        return value == View.VISIBLE
     }
 
 

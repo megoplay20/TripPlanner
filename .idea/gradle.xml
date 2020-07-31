@@ -15,7 +15,9 @@
             <option value="$PROJECT_DIR$/modules/core" />
             <option value="$PROJECT_DIR$/modules/core_api" />
             <option value="$PROJECT_DIR$/modules/core_impl" />
+            <option value="$PROJECT_DIR$/modules/followroute" />
             <option value="$PROJECT_DIR$/modules/loadroute" />
+            <option value="$PROJECT_DIR$/modules/network" />
             <option value="$PROJECT_DIR$/modules/newroute" />
             <option value="$PROJECT_DIR$/modules/pointofinterest" />
             <option value="$PROJECT_DIR$/modules/shared_ui" />

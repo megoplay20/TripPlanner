@@ -10,17 +10,15 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.esv.tripplanner.core_api.di.AppWithFacade
+import com.esv.tripplanner.core_api.di.IPlanRouteActions
 import com.esv.tripplanner.core_api.helpers.IDateProcessor
 import com.esv.tripplanner.core_api.helpers.ITypeCaster
-import com.esv.tripplanner.core_api.repositories.ITripRepository
-import com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
-import com.esv.tripplanner.core_api.ui.InjectableFragment
-import com.esv.tripplanner.core_api.viewModelFactories.CustomViewModelProviderFactory
 import com.esv.tripplanner.newroute.R
 import com.esv.tripplanner.newroute.adapters.PoiVisitPlaceAdapter
 import com.esv.tripplanner.newroute.databinding.NewRouteFragmentBinding
 import com.esv.tripplanner.newroute.di.NewRouteComponent
 import com.esv.tripplanner.newroute.viewModels.NewRouteViewModel
+import com.esv.tripplanner.newroute.viewModels.RouteGeneratorViewModel
 import javax.inject.Inject
 
 class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
@@ -36,6 +34,10 @@ class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
 
     @Inject
     lateinit var navComponent: com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider
+
+    @Inject
+    lateinit var routePlanner: IPlanRouteActions
+
 
 
     private lateinit var viewModel: NewRouteViewModel
@@ -58,7 +60,8 @@ class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
                     requireActivity().application,
                     repository,
                     dateProcessor,
-                    navComponent.provideNavigator()
+                    navComponent.provideNavigator(),
+                    RouteGeneratorViewModel(requireActivity().application, repository, navComponent.provideNavigator(),routePlanner)
                 )
             }
         ).get(NewRouteViewModel::class.java)
@@ -98,14 +101,13 @@ class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
                 if (it.isNotEmpty())
                     adapter.setPlaces(it.first().pointOfInterestVisitPlanList)
             }
-
         })
 
     }
 
     override fun performInjection() {
-        NewRouteComponent.createComponent((requireActivity().application as AppWithFacade)
-            .getProvidersFacade())
+        val app = (requireActivity().application as AppWithFacade)
+        NewRouteComponent.createComponent(app.getProvidersFacade(), app.getNetwork())
             .inject(this)
     }
 }

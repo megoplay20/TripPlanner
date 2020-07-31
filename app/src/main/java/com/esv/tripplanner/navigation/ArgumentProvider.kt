@@ -2,6 +2,7 @@ package com.esv.tripplanner.navigation
 
 import android.os.Bundle
 import com.esv.tripplanner.core_api.navigation.IArgumentsProvider
+import com.esv.tripplanner.followroute.fragments.FollowRouteFragmentArgs
 import com.esv.tripplanner.newroute.fragments.NewRouteFragmentArgs
 import com.esv.tripplanner.visitplan.fragments.AddVisitPlanFragmentArgs
 import javax.inject.Inject
@@ -24,5 +25,12 @@ class ArgumentProvider @Inject constructor():
 
     override fun getTripIdForLoadRoute(arguments: Bundle?): Int {
         TODO("Not yet implemented")
+    }
+
+    override fun getTripIdForFollowRoute(arguments: Bundle?): Int {
+        return arguments?.let {
+            val args = FollowRouteFragmentArgs.fromBundle(it)
+            args.tripId
+        } ?: -1
     }
 }

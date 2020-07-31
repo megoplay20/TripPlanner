@@ -1,3 +1,5 @@
+include ':modules:followroute'
+include ':modules:network'
 include ':modules:loadroute'
 include ':modules:core_impl'
 include ':modules:core_api'

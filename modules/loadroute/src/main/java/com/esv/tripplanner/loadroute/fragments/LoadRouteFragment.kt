@@ -70,6 +70,8 @@ class LoadRouteFragment : InjectableFragment() {
             )
         trips.trips.adapter = adapter
 
+        viewModel.deleteAllEmptyCreatedTrips()
+
         viewModel.trips.observe(viewLifecycleOwner, Observer {
             it?.let {
                 if (it.isNotEmpty())

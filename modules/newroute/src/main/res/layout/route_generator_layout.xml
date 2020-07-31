@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.esv.tripplanner.newroute.viewModels.RouteGeneratorViewModel" />
+
+        <import type="com.esv.tripplanner.core_api.binding_converters.BindingConverters"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:focusable="false"
+            android:clickable="false"
+            android:checked="@{viewModel.isRouteGenerated}"
+            android:text="@string/RouteWasBuild"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/build"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.generateRoute()}"
+            android:text="@string/BuildRoute"
+            android:textAllCaps="false"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:icon="@drawable/ic_baseline_build_24"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="183dp"
+            android:visibility="@{BindingConverters.boolToVisibility(!viewModel.routeGenerated)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/rebuild"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:onClick="@{()->viewModel.regenerateRoute()}"
+            android:text="@string/RebuildRoute"
+            android:textAllCaps="false"
+            android:textColor="?attr/removeItem"
+            app:icon="@drawable/ic_baseline_loop_24"
+            app:iconTint="?attr/removeItem"
+            android:visibility="@{BindingConverters.boolToVisibility(viewModel.routeGenerated)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/navigate"
+            style="?attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:onClick="@{()->viewModel.followRoute()}"
+            android:text="@string/followRoute"
+            android:textAllCaps="false"
+            android:visibility="@{BindingConverters.boolToVisibility(viewModel.routeGenerated)}"
+            app:icon="@drawable/ic_baseline_navigation_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch1" />
+
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
