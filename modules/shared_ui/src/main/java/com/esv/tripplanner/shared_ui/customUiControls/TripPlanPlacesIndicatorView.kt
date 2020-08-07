@@ -140,6 +140,10 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
 
     override fun onDraw(canvas: Canvas?) {
 
+        val textXPos = width.toFloat() / 2
+        val textYPos =
+            (height.toFloat() / 2f - (textPaint.descent() + textPaint.ascent()) / 2f)
+
         if(fitElements && placesCount.toInt() > 0){
             findOptimalRadiusAndPadding()
         }
@@ -148,7 +152,7 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
 
             adjustFontSizeToFitControlSize()
 
-            canvas?.drawText(noPlacesText, width.toFloat() / 2, height.toFloat() / 2, textPaint)
+            canvas?.drawText(noPlacesText, textXPos, textYPos, textPaint)
         } else {
             val itemsPerRow: Int =
                 if (width.toFloat() / (placesCount.toInt() * getItemSize()) > 1) {
@@ -200,8 +204,7 @@ class TripPlanPlacesIndicatorView(context: Context, attributeSet: AttributeSet) 
             }
 
 
-            val textXPos = width.toFloat() / 2
-            val textYPos = height.toFloat() / 2
+
             val w: Float = textPaint.measureText(placesCount.toString())/2
 
 
