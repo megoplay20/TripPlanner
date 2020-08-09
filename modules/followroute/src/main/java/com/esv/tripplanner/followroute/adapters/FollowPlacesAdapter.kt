@@ -25,7 +25,7 @@ class FollowPlacesAdapter(
     fun setPlaces(poiVisitPlaces:List<PointOfInterestVisitPlan>){
         this.poiVisitPlaces.clear()
         this.poiVisitPlaces.addAll(poiVisitPlaces);
-        this.notifyDataSetChanged();
+        this.notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FollowPlacesViewHolder {
@@ -54,6 +54,8 @@ class FollowPlacesAdapter(
     override fun onBindViewHolder(holder: FollowPlacesViewHolder, position: Int) {
         holder.bindItem(poiVisitPlaces.get(position))
     }
+
+
 
 
 }
