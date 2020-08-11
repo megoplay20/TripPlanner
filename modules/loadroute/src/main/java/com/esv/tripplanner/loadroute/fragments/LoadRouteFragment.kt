@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.load_route_fragment.view.*
 import javax.inject.Inject
 
 
-class LoadRouteFragment : InjectableFragment() {
+open class LoadRouteFragment : InjectableFragment() {
 
     @Inject
     lateinit var navComponent: com.esv.tripplanner.core_api.navigation.INavigatorComponentsProvider

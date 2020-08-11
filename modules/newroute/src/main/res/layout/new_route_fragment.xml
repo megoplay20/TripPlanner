@@ -66,6 +66,7 @@
                 />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/show_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_childDesiredHeight="30dp"
@@ -74,6 +75,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_up_24" />
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/hide_items"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_childDesiredHeight="30dp"
@@ -82,7 +84,7 @@
                 app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
 
             <include
-
+                android:id="@+id/toggle_content"
                 layout="@layout/route_generator_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

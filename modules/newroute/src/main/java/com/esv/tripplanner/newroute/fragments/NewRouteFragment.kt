@@ -21,7 +21,7 @@ import com.esv.tripplanner.newroute.viewModels.NewRouteViewModel
 import com.esv.tripplanner.newroute.viewModels.RouteGeneratorViewModel
 import javax.inject.Inject
 
-class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
+open class NewRouteFragment : com.esv.tripplanner.core_api.ui.InjectableFragment() {
 
     @Inject
     lateinit var typeCaster: ITypeCaster

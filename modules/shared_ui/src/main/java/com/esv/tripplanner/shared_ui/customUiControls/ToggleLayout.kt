@@ -160,9 +160,6 @@ class ToggleLayout (context: Context, attributeSet: AttributeSet) : ViewGroup(co
             it.layout(0,0, it.measuredWidth, it.measuredHeight)
         }
 
-    }
-    override fun dispatchDraw(canvas: Canvas?) {
-        super.dispatchDraw(canvas)
         for(child in getToggleChildren()){
             val lp = child.layoutParams as ToggleLayoutParams
             if(lp.viewRole == ToggleLayoutParams.ViewRole.HIDE_BUTTON){
@@ -181,11 +178,16 @@ class ToggleLayout (context: Context, attributeSet: AttributeSet) : ViewGroup(co
         val contentChild = getContentChild()
         contentChild?.apply {
             if(hideButtonVisible){
-                    visibility = View.VISIBLE
+                visibility = View.VISIBLE
             }else{
                 visibility = View.GONE
             }
         }
+
+    }
+    override fun dispatchDraw(canvas: Canvas?) {
+        super.dispatchDraw(canvas)
+
     }
 
     override fun checkLayoutParams(p: LayoutParams?): Boolean {
