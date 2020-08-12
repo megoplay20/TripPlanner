@@ -83,7 +83,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/startNewRouteButton"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -94,6 +94,7 @@
                         app:icon="@drawable/ic_add_black_24dp" />
 
                     <Button
+                        android:id="@+id/followRouteButton"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
