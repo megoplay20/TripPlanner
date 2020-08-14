@@ -95,8 +95,6 @@ class TripPlannerMainActivityTest {
             pressBack()
             saveVisitPlan.click()
         }
-
-
     }
 
 

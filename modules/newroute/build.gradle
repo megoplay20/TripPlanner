@@ -30,6 +30,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+
+    lintOptions {
+        quiet true
+        abortOnError true
+        xmlReport false
+        baseline file("lint-baseline.xml")
+        checkTestSources false
+        ignoreTestSources true
+        checkDependencies false
+    }
 }
 
 dependencies {
@@ -71,5 +82,7 @@ dependencies {
 
     implementation project(':modules:core_api')
     implementation project(':modules:shared_ui')
+
+    lintChecks project(':modules:lint_checks')
 
 }

@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/modules/core_api" />
             <option value="$PROJECT_DIR$/modules/core_impl" />
             <option value="$PROJECT_DIR$/modules/followroute" />
+            <option value="$PROJECT_DIR$/modules/lint_checks" />
             <option value="$PROJECT_DIR$/modules/loadroute" />
             <option value="$PROJECT_DIR$/modules/network" />
             <option value="$PROJECT_DIR$/modules/newroute" />

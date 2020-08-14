@@ -1,0 +1,24 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+jar {
+    manifest {
+        attributes("Lint-Registry-v2": "com.esv.tripplanner.lint_checks.TripPlannerIssueRegistry")
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    def lint_version = "26.5.2"
+
+    compileOnly "com.android.tools.lint:lint-api:$lint_version"
+    compileOnly "com.android.tools.lint:lint-checks:$lint_version"
+
+    compileOnly "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50"
+
+    testImplementation "com.android.tools.lint:lint-tests:$lint_version"
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+targetCompatibility = JavaVersion.VERSION_1_8.toString()
