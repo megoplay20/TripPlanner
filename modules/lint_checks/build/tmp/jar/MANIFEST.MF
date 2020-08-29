@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Lint-Registry-v2: com.esv.tripplanner.lint_checks.TripPlannerIssueRegi
+ stry
+

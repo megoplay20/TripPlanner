@@ -77,9 +77,7 @@ class OptimalRoutePlannerTest {
 
             val r = OptimalRoutePlanner(repository, retrofitMock).findOptimalRoute(mockTrip.id)
 
-
-            System.out.println("E " + gson.toJson(r));
-
+            assert(r.trip_id == mockDto.trip_id)
         }
 
 
