@@ -77,7 +77,7 @@ class OptimalRoutePlannerTest {
 
             val r = OptimalRoutePlanner(repository, retrofitMock).findOptimalRoute(mockTrip.id)
 
-            //assert(r.trip_id == mockDto.trip_id)
+            assert(r.trip_id == mockDto.trip_id)
         }
 
 
