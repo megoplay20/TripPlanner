@@ -1,11 +1,8 @@
 package com.esv.tripplanner
 
 import android.view.View
-import android.widget.Button
 import android.widget.Spinner
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.RecyclerView
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.ViewMatchers
@@ -17,11 +14,13 @@ import com.agoda.kakao.edit.KEditText
 import com.agoda.kakao.image.KImageView
 import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KButton
+import com.esv.tripplanner.core_api.di.IPlanRouteActions
+import com.esv.tripplanner.network.api_calls.dto.OptimalRouteDto
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers.*
 import org.junit.Rule
 import org.junit.Test
-
 
 class StartScreen : Screen<StartScreen>() {
     val startNewRoute = KButton { withId(com.esv.tripplanner.startscreen.R.id.startNewRouteButton) }
@@ -100,9 +99,10 @@ class TripPlannerMainActivityTest {
     }
 
 
+
     @Test
     fun buildORebuildRouteThenFollow() {
-        val activity = activityRule.activity
+
         startScreen{
             startNewRoute.isDisplayed()
             startNewRoute.click()
@@ -115,6 +115,9 @@ class TripPlannerMainActivityTest {
             showItemsImageView.click()
             buildRoute.isDisplayed()
             buildRoute.click()
+            Thread.sleep(3000)
+            rebuildRoute.isDisplayed()
+            rebuildRoute.click()
         }
     }
 
