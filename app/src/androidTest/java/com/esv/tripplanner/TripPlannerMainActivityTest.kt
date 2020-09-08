@@ -113,16 +113,8 @@ class TripPlannerMainActivityTest {
             routeNameEdit.typeText("New route for testing!")
             showItemsImageView.isDisplayed()
             showItemsImageView.click()
-            activity?.let{
-                val fragment = (it as TripPlannerMainActivity).supportFragmentManager.fragments[0]
-                fragment.view?.let{fragmentRootView->
-                    if(fragmentRootView.findViewById<Button>(R.id.build).isVisible){
-                            buildRoute.click()
-                    }else{
-                            rebuildRoute.click()
-                    }
-                }
-            }
+            buildRoute.isDisplayed()
+            buildRoute.click()
         }
     }
 
