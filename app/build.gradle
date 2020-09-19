@@ -22,6 +22,7 @@ android {
 
     buildTypes {
         release {
+            debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -43,8 +44,10 @@ android {
     testOptions {
         unitTests {
             includeAndroidResources = true
-        }
+
+          }
     }
+
 
 
 }
@@ -97,14 +100,14 @@ dependencies {
     implementation project(':modules:network')
     implementation project(':modules:followroute')
 
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     // Core library
-    androidTestImplementation 'androidx.test:core:1.0.0'
+    androidTestImplementation 'androidx.test:core:1.2.0'
 
     // AndroidJUnitRunner and JUnit Rules
-    androidTestImplementation 'androidx.test:runner:1.1.0'
-    androidTestImplementation 'androidx.test:rules:1.1.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
@@ -112,6 +115,9 @@ dependencies {
 
     def fragment_version = "1.2.5"
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    implementation "androidx.fragment:fragment-testing:$fragment_version"
+
 
     // required if you want to use Mockito for unit tests
     testImplementation "org.mockito:mockito-inline:3.4.6"
@@ -124,3 +130,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
 
 }
+

@@ -4,13 +4,9 @@ package com.esv.tripplanner.lint_checks
 
 import com.android.tools.lint.detector.api.*
 import com.android.utils.forEach
-import com.sun.org.apache.xerces.internal.dom.AttrNSImpl
-import org.bouncycastle.jcajce.provider.symmetric.DES
 import org.w3c.dom.Element
-import org.w3c.dom.Node
 import org.w3c.dom.Node.ELEMENT_NODE
 import java.util.*
-import java.util.EnumSet.range
 
 class ToggleLayoutXmlStructureCheck : ResourceXmlDetector(){
     companion object {
