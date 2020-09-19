@@ -1,46 +1,32 @@
 package com.esv.tripplanner.application
 
-import android.app.Application
 import android.os.Bundle
-import android.view.View
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.fragment.app.testing.FragmentScenario
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
-import androidx.test.core.app.ActivityScenario
-import androidx.test.core.app.ApplicationProvider
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.esv.tripplanner.R
-import com.esv.tripplanner.TripPlannerMainActivity
 import com.esv.tripplanner.application.TripPlannerApplication
 import com.esv.tripplanner.core_api.data.entities.Trip
 import com.esv.tripplanner.loadroute.fragments.LoadRouteFragment
-import com.esv.tripplanner.newroute.fragments.NewRouteFragment
-import com.esv.tripplanner.shared_ui.customUiControls.ToggleLayout
 import junit.framework.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
-import org.robolectric.Robolectric
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 //https://stackoverflow.com/questions/56808485/robolectric-and-android-sdk-29/57261194#57261194
 @RunWith(RobolectricTestRunner::class)
-@Config(application = TripPlannerApplication::class)
+@Config(sdk=[21],application = TripPlannerApplication::class)
 class LoadRouteFragmentTest {
     @Mock
     private lateinit var repository: com.esv.tripplanner.core_api.repositories.ITripRepository
