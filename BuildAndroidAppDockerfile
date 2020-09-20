@@ -2,7 +2,7 @@ FROM mingc/android-build-box:latest
 
 WORKDIR /project 
 
-COPY .. . 
+COPY . . 
 
 COPY build_project.sh .
 RUN chmod +x build_project.sh
