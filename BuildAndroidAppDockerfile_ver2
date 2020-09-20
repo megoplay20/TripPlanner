@@ -24,10 +24,7 @@ WORKDIR /application
 
 COPY . . 
 
-COPY build_project.sh .
-RUN chmod +x build_project.sh
 
-CMD cd /application && ./build_project.sh
 
 
 
