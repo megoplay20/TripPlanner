@@ -4,7 +4,11 @@ WORKDIR /project
 
 COPY . . 
 
-CMD cd /project
+COPY build_project.sh .
+RUN chmod +x build_project.sh
+
+
+CMD cd /project && ./build_project.sh
 
 
 
