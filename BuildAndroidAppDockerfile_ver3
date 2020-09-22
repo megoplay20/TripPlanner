@@ -1,0 +1,5 @@
+FROM mingc/android-build-box:latest
+
+WORKDIR /project 
+
+COPY . . 
