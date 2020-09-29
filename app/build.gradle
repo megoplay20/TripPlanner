@@ -4,6 +4,22 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
+ext.versionMajor = 1
+ext.versionMinor = 0
+ext.versionPatch = 0
+
+def computeVersionName() {
+    return String.format('%d.%d.%d', versionMajor, versionMinor, versionPatch)
+}
+
+def computeVersionCode() {
+    println "Present MAJOR " + versionMajor
+    def versionCode =  (versionMajor * 1000000) + (versionMinor * 100000) + (versionPatch * 10000) + Integer.valueOf(System.getenv("BUILD_NUMBER") ?: 0)
+    println "Present VERSION CODE " + versionCode
+    return versionCode
+}
+
+
 def getKeyValue(keyName) {
 
     Properties signInProps = new Properties()
@@ -51,8 +67,8 @@ android {
         applicationId "com.esv.tripplanner"
         minSdkVersion 21
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        versionCode computeVersionCode()
+        versionName computeVersionName()
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
