@@ -27,7 +27,7 @@ def getKeyPassword = { ->
 
 android {
     signingConfigs {
-        config {
+        release  {
             storeFile file(getStore())
             storePassword getStorePassword()
             keyAlias getKeyAlias()
