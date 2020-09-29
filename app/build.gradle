@@ -4,24 +4,34 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
+def getKeyValue(keyName) {
+
+    Properties signInProps = new Properties()
+    String secretFilePath = 'D:/SSH_ACCESS/NewKey/AppSigninSecretFile.properties'
+    if (new File(secretFilePath).exists()){
+        def fileStream = new FileInputStream(file(secretFilePath))
+        signInProps.load(fileStream)
+        println "Got signing data from LOCAL FILE for " + keyName
+        return signInProps[keyName]
+    }
+    println "Got signing data from ENVIRONMENT " + keyName
+    return System.getenv(keyName) ? System.getenv(keyName) : "null"
+}
+
 def getStore = { ->
-    def result = System.getenv("KEYSTOREFILE_ASP") ? System.getenv("KEYSTOREFILE_ASP") : "null"
-    return result
+    return getKeyValue("KEYSTOREFILE_ASP")
 }
 
 def getStorePassword = { ->
-    def result = System.getenv("STOREPASSWORD_ASP") ? System.getenv("STOREPASSWORD_ASP") : ""
-    return result
+    return getKeyValue("STOREPASSWORD_ASP")
 }
 
 def getKeyAlias = { ->
-    def result = System.getenv("KEYALIAS_ASP") ? System.getenv("KEYALIAS_ASP") : ""
-    return result
+    return getKeyValue("KEYALIAS_ASP")
 }
 
 def getKeyPassword = { ->
-    def result = System.getenv("KEYPASSWORD_ASP") ? System.getenv("KEYPASSWORD_ASP") : ""
-    return result
+    return getKeyValue("KEYPASSWORD_ASP")
 }
 
 
