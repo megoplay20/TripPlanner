@@ -4,7 +4,36 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
+def getStore = { ->
+    def result = System.getenv("KEYSTOREFILE_ASP") ? System.getenv("KEYSTOREFILE_ASP") : "null"
+    return result
+}
+
+def getStorePassword = { ->
+    def result = System.getenv("STOREPASSWORD_ASP") ? System.getenv("STOREPASSWORD_ASP") : ""
+    return result
+}
+
+def getKeyAlias = { ->
+    def result = System.getenv("KEYALIAS_ASP") ? System.getenv("KEYALIAS_ASP") : ""
+    return result
+}
+
+def getKeyPassword = { ->
+    def result = System.getenv("KEYPASSWORD_ASP") ? System.getenv("KEYPASSWORD_ASP") : ""
+    return result
+}
+
+
 android {
+    signingConfigs {
+        config {
+            storeFile file(getStore())
+            storePassword getStorePassword()
+            keyAlias getKeyAlias()
+            keyPassword getKeyPassword()
+        }
+    }
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
 
@@ -22,6 +51,11 @@ android {
 
     buildTypes {
         release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        local {
             debuggable true
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
