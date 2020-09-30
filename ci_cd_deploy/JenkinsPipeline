@@ -1,0 +1,82 @@
+pipeline {
+    agent { node { label 'prod-ai-1' } }
+    stages {
+        stage('Pull sources from git repository') {
+            steps {
+               git branch: 'ci_cd_12', url: 'https://github.com/megoplay20/TripPlanner.git'
+            }
+			post {
+                success {
+                    echo 'Done pulling from repository!'
+                }
+            }
+        }
+		stage('Build and assemble') {
+		    agent {
+				dockerfile {
+				    reuseNode true
+					filename 'BuildAndroidAppDockerfile_ver4'
+					label 'prod-ai-1'
+					args '--user root'
+				}
+			}
+			environment {
+				STOREPASSWORD_ASP = credentials('key_store_pass_asp')
+				KEYALIAS_ASP = credentials('key_store_alias_asp')
+				KEYSTOREFILE_ASP = credentials('keystore_file_asp')
+				KEYPASSWORD_ASP = credentials('alias_pass_asp')
+			}
+			stages{
+				stage('Change gradlew permissons') {
+					steps{
+						sh "chmod +x gradlew"
+					}
+				}
+				stage('Stop gradlew demons') {
+					steps{
+						echo 'Stop gradle deamons'
+						sh "./gradlew --stop"
+					}
+				}
+				stage('Clean and build release') {
+					steps{
+						echo 'Clean and BuildRelese'
+						sh "./gradlew clean buildRelease"
+					}
+				}
+				stage('Execute tests') {
+					steps{
+						echo 'Test application'
+						sh "./gradlew cleanTest testDebug --rerun-tasks"
+					}
+				}
+				stage('Sign app and assembe release, produce apks') {
+					steps{
+						echo 'Assemble release and Sign application'
+						sh "./gradlew assembleRelease -PstoreFile=${KEYSTOREFILE_ASP} -PstorePassword=${STOREPASSWORD_ASP} -PkeyAlias=${KEYALIAS_ASP} -PkeyPassword=${KEYPASSWORD_ASP}"
+							archiveArtifacts '**/*.apk'
+					}
+				}
+				stage('Publish app to Google play') {
+					input {
+							message "Вы действительно хотите опубликовать приложение в Google Play? Укажите Relese Notes в поле ниже"
+							ok "Да"
+							parameters {
+								string(name: 'RELEASE_NOTES', defaultValue: '', description: 'Release notes')
+							}
+					}
+					steps{
+						androidApkUpload googleCredentialsId: 'asp_google_service_acc', apkFilesPattern: '**/outputs/apk/release/*-release.apk', trackName: 'internal', rolloutPercentage: '100', recentChangeList: [[language: 'ru-RU', text: "Cборка ${env.BUILD_NUMBER}. ${RELEASE_NOTES}"]]
+					}
+				}
+
+			}
+			post {
+                success {
+                    echo 'Done building project!'
+                }
+            }
+        }
+
+    }
+}

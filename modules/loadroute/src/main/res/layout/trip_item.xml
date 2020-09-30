@@ -35,8 +35,6 @@
                 app:itemCount="@{viewModel.tripItemCount}"
                 app:itemColor="@color/removeColor"
                 app:layout_viewPosition="topLeft">
-
-
             </com.esv.tripplanner.shared_ui.customUiControls.TripPlanPlacesIndicatorView>
 
             <androidx.appcompat.widget.AppCompatImageView

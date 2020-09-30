@@ -1,0 +1,194 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs"
+
+ext.versionMajor = 1
+ext.versionMinor = 0
+ext.versionPatch = 0
+
+def computeVersionName() {
+    return String.format('%d.%d.%d', versionMajor, versionMinor, versionPatch)
+}
+
+def computeVersionCode() {
+    println "Present MAJOR " + versionMajor
+    def versionCode =  (versionMajor * 1000000) + (versionMinor * 100000) + (versionPatch * 10000) + Integer.valueOf(System.getenv("BUILD_NUMBER") ?: 0)
+    println "Present VERSION CODE " + versionCode
+    return versionCode
+}
+
+
+def getKeyValue(keyName) {
+
+    Properties signInProps = new Properties()
+    String secretFilePath = 'D:/SSH_ACCESS/NewKey/AppSigninSecretFile.properties'
+    if (new File(secretFilePath).exists()){
+        def fileStream = new FileInputStream(file(secretFilePath))
+        signInProps.load(fileStream)
+        println "Got signing data from LOCAL FILE for " + keyName
+        return signInProps[keyName]
+    }
+    println "Got signing data from ENVIRONMENT " + keyName
+    return System.getenv(keyName) ? System.getenv(keyName) : "null"
+}
+
+def getStore = { ->
+    return getKeyValue("KEYSTOREFILE_ASP")
+}
+
+def getStorePassword = { ->
+    return getKeyValue("STOREPASSWORD_ASP")
+}
+
+def getKeyAlias = { ->
+    return getKeyValue("KEYALIAS_ASP")
+}
+
+def getKeyPassword = { ->
+    return getKeyValue("KEYPASSWORD_ASP")
+}
+
+
+android {
+    signingConfigs {
+        release  {
+            storeFile file(getStore())
+            storePassword getStorePassword()
+            keyAlias getKeyAlias()
+            keyPassword getKeyPassword()
+        }
+    }
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.esv.tripplanner"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode computeVersionCode()
+        versionName computeVersionName()
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+
+          }
+    }
+
+    testOptions {
+        unitTests.all {
+            systemProperty 'user.home', System.getenv('HOME')
+        }
+    }
+
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.0'
+
+
+    implementation("com.squareup.okhttp3:okhttp:4.5.0")
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.5'
+    implementation "androidx.core:core-ktx:1.3.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:2.2.0"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
+    implementation 'com.google.code.gson:gson:2.8.6'
+
+    kapt 'com.android.databinding:compiler:3.1.4'
+
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version" // For Kotlin use kapt instead of annotationProcessor
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$room_version"
+
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
+
+    implementation 'com.google.dagger:dagger:2.13'
+    kapt 'com.google.dagger:dagger-compiler:2.13'
+
+    implementation project(':modules:core')
+    implementation project(':modules:core_impl')
+    implementation project(':modules:core_api')
+    implementation project(':modules:shared_ui')
+    implementation project(':modules:startscreen')
+    implementation project(':modules:newroute')
+    implementation project(':modules:loadroute')
+    implementation project(':modules:pointofinterest')
+    implementation project(':modules:visitplan')
+    implementation project(':modules:network')
+    implementation project(':modules:followroute')
+
+    testImplementation 'junit:junit:4.13'
+    // Core library
+    androidTestImplementation 'androidx.test:core:1.2.0'
+
+    // AndroidJUnitRunner and JUnit Rules
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    testImplementation 'org.robolectric:robolectric:4.3'
+
+    def fragment_version = "1.2.5"
+    debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
+
+    implementation "androidx.fragment:fragment-testing:$fragment_version"
+
+
+    // required if you want to use Mockito for unit tests
+    testImplementation "org.mockito:mockito-inline:3.4.6"
+
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
+
+
+
+    androidTestImplementation 'com.agoda.kakao:kakao:2.0.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.1.1'
+
+}
+
